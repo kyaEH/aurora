@@ -1,1 +1,172 @@
-hey!
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Destiny RPG: Character Sheet</title>
+        <meta name="description" content="A printable character sheet for Destiny RPG.">
+        <link href='https://fonts.googleapis.com/css?family=Merriweather|Uncial+Antiqua' rel='stylesheet' type='text/css'>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <link rel="stylesheet" href="normalize.css">
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+    <page size="A4">
+        <main role="main">
+            <h1>Le Faisceau D'aurora</h1>
+            <h3>Fiche de personnage <span>v4.0</span></h3>
+            <button style="color:black;">Importer la fiche</button>
+            <button style="color:black;">Exporter la fiche</button>
+            
+            <section class="profile">
+                <h2>Profile</h2>
+                <div class="leftCol">
+                    <p>Nom</p> <input type="text" id="charname"/>
+                    <p>Race</p> <input type="text"/>
+                    <p>Faction</p> <input type="text"/>
+                    <p>Tikimis?</p> <input type="checkbox">
+                </div>
+                <div class="rightCol">
+                    <p>Taille</p> <input type="number"/>
+                    <p>Poids</p> <input type="number"/>
+                    <p>Age</p> <input type="number"/>
+                </div>
+            </section>
+            <section class="condition">
+              <h2>Condition</h2>
+              <div class="leftCol">
+                  <div class="condition-body">
+                      <p>Blessures</p>
+                      <input type="number"> 
+                      
+                  </div>
+              </div>
+              <div class="rightCol">
+                  <div class="condition-spirit">
+                    <input type="number">
+                      <p>Fatigue</p>
+                      
+                  </div>
+              </div>
+              <div style="text-align:center;">
+                PV --- Mana<br>
+              <input type="number" placeholder="PV"/><input type="number"/><br>
+             <input type="number"/><input type="number"/><br>
+              PA --- PO   
+            </div>
+          </section>
+            <div class="leftCol">
+                <section class="traits">
+                    <h2>Stats principales</h2><br>
+                    Force<input type="number" class="trait" id="force"/><br>
+                    Constitution <input type="number" class="trait" id="constitution"/><br>
+                    Agilité <input type="number" class="trait" id="agilite"/><br>
+                    Intelligence <input type="number" class="trait" id="intelligence"/><br>
+                    Concentration <input type="number" class="trait" id="concentration"/><br>
+                    Dextérité <input type="number" class="trait" id="dexterite"/><br>
+                    Experience <input type="number" class="trait" id="experience"/><br>
+                    Lancer un dé: <button onclick="sendMessage($('#precision').val())">Précision</button><button onclick="sendMessage($('#buff').val())">Buff/debuff</button><button onclick="sendMessage()">Esquive</button>
+                </section>
+              <section class="abilities">
+                <h2>Compétences</h2>
+                <input type="text" style="width: 100%;">
+                <input type="text"style="width: 100%;">
+                <input type="text" style="width: 100%;">
+                <input type="text"style="width: 100%;">
+              </section>
+                
+            </div>
+
+            <div class="rightCol">
+                <section class="abilities">
+                    <h2>Stats secondaires</h2>
+                    <h3>Combat</h3>
+                    <input type="number" class="trait" id="precision" max="17" disabled/> Précision<br>
+                    <input type="number" class="trait" id="degats" disabled/> Dégats Phys<br>
+                     <input type="number" class="trait" id="magie"/> Magie<br>
+                     <input type="number" class="trait" id="crit"/> Critique<br>
+                     <input type="number" class="trait" id="buff"/> Buff/Debuff<br>
+                     <input type="number" class="trait" id="parade"/> Parade<br>
+                     <input type="number" class="trait" id="esquive"/> Esquive<br>
+                    <h3>Social</h3>
+                     <input type="number" class="trait"/> Niveau<br>
+                     <input type="number" class="trait"/> Initiative<br>
+                     <input type="number" class="trait"/> Furtivité<br>
+                     <input type="number" class="trait"/> Perception<br>
+                     <input type="number" class="trait"/> Mana<br>
+                     <input type="number" class="trait"/> PV Max<br>
+                     <input type="number" class="trait"/> Charisme<br>
+                </section>
+            </div>
+            <div class="leftCol">
+                <section class="special">
+                    <h2>Special</h2>
+                    <div class="leftCol">
+                        <input />
+                        <input />
+                        <input />
+                        <input />
+                        <input />
+                        <input />
+                        <input />
+                        <div class="special-prana">
+                            <p>Prana</p>
+                            <div class="score"></div><div class="score"></div><div class="score"></div><div class="score"></div><div class="score"></div>
+                        </div>
+                    </div>
+                    <div class="rightCol">
+                        <input />
+                        <input />
+                        <input />
+                        <input />
+                        <input />
+                        <input />
+                        <input />
+                        <div class="special-karma">
+                            <p>Karma</p>
+                            <div class="score"></div><div class="score"></div><div class="score"></div><div class="score"></div><div class="score"></div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="rightCol">
+                <section class="gear">
+                    <h2>Gear</h2>
+                    <div class="leftCol">
+                        Arme principale <input /> 
+                        Arme secondaire <input /> 
+                        Armure <input />
+                        <input />
+                        <input />
+                        <input />
+                        <input />
+                        <input />
+                    </div>
+                    <div class="rightCol">
+                        Dégats <input type="number"/>
+                        Dégats <input type="number"/>
+                        Parade <input type="number"/>
+                        <input />
+                        <input />
+                        <input />
+                        <input />
+                        <p class="gear-coin">Coin</p>
+                        </div>
+                    </div>
+                    
+                </section>
+            </div>
+
+        </main>
+        <footer>
+            <div class="copyright">MIT Licensed &copy; 2016 Ville Pelkonen</div>
+        </footer>
+        </page>
+
+        
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+        <script src="scripts.js"></script>
+        
+      </body>
+</html>
