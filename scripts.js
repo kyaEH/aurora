@@ -24,6 +24,7 @@
 $(document).ready(function(){
     $("input").val(""); 
     $(".trait").val("1"); 
+    
 });
 
 $("input").change(function(){
@@ -40,6 +41,10 @@ $("input").change(function(){
 
 
 function sendMessage(stat) {
+    $('button').prop('disabled', true);
+    setTimeout(function() {
+          $('button').prop('disabled', false);
+    }, 5000);
     var request = new XMLHttpRequest();
     request.open("POST", "https://discord.com/api/webhooks/1036662078775234622/tgDzlgPgjfvVxTdvkA74_1xxai6kHqYzizSGeP7nbAwV1VbN72do3JoPHHbKD3GcYzxC");
 
@@ -66,3 +71,31 @@ function sendMessage(stat) {
 
     request.send(JSON.stringify(params));
 }
+
+
+function exportData(){
+    var json_arr = {};
+        json_arr["charname"] = $("#charname").val();
+        json_arr["race"] = $("#race").val();
+        json_arr["faction"] = $("#faction").val();
+
+        var json_string = JSON.stringify(json_arr);
+        if(window.confirm(json_string+" \nVoulez vous copier dans le presse papier?")){
+            navigator.clipboard.writeText(json_string);
+        }
+    
+}
+
+function importData(){
+    data = JSON.parse($("#importjson").val());
+    //console.log(data["charname"]);
+    $("#charname").val(data["charname"]);
+    $("#race").val(data["race"]);
+    $("#faction").val(data["faction"]);
+}
+
+$(window).bind('beforeunload',function(){
+    
+   return 'are you sure you want to leave?';
+
+});

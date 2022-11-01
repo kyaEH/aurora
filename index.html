@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Destiny RPG: Character Sheet</title>
-        <meta name="description" content="A printable character sheet for Destiny RPG.">
+        <title>Fiche de personnage - Le faisceau d'Aurora</title>
+        <meta name="description" content="Fiche de personnage - Le faisceau d'Aurora (V4.0)">
         <link href='https://fonts.googleapis.com/css?family=Merriweather|Uncial+Antiqua' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -16,15 +16,16 @@
         <main role="main">
             <h1>Le Faisceau D'aurora</h1>
             <h3>Fiche de personnage <span>v4.0</span></h3>
-            <button style="color:black;">Importer la fiche</button>
-            <button style="color:black;">Exporter la fiche</button>
+            <input type="text" id="importjson">
+            <button style="color:black;" onclick="importData()">Importer la fiche</button>
+            <button style="color:black;" onclick="exportData()">Exporter la fiche</button>
             
             <section class="profile">
                 <h2>Profile</h2>
                 <div class="leftCol">
                     <p>Nom</p> <input type="text" id="charname"/>
-                    <p>Race</p> <input type="text"/>
-                    <p>Faction</p> <input type="text"/>
+                    <p>Race</p> <input type="text" id="race"/>
+                    <p>Faction</p> <input type="text" id="faction"/>
                     <p>Tikimis?</p> <input type="checkbox">
                 </div>
                 <div class="rightCol">
@@ -50,10 +51,11 @@
                   </div>
               </div>
               <div style="text-align:center;">
-                PV --- Mana<br>
-              <input type="number" placeholder="PV"/><input type="number"/><br>
-             <input type="number"/><input type="number"/><br>
-              PA --- PO   
+                PV        Mana<br>
+                
+                <img src="moon1.png" style="position: absolute; left:5%;" width="15%"></img><input type="number" placeholder="PV"style="margin-right:10px;width:10%"/><input type="number" style="margin-left:10px;width:10%"/><img src="moon1.png" style=" transform: scaleX(-1);position: absolute; right:5%;" width="15%"></img><br>
+             <input type="number" style="margin-right:10px;width:10%"/><input type="number" style="margin-left:10px;width:10%"/><br>
+              PA        PO   
             </div>
           </section>
             <div class="leftCol">
@@ -69,10 +71,11 @@
                     Lancer un dé: <button onclick="sendMessage($('#precision').val())">Précision</button><button onclick="sendMessage($('#buff').val())">Buff/debuff</button><button onclick="sendMessage()">Esquive</button>
                 </section>
               <section class="abilities">
-                <h2>Compétences</h2>
+                <h2>Talents</h2>
                 <input type="text" style="width: 100%;">
                 <input type="text"style="width: 100%;">
                 <input type="text" style="width: 100%;">
+                <input type="text"style="width: 100%;">
                 <input type="text"style="width: 100%;">
               </section>
                 
@@ -101,66 +104,66 @@
             </div>
             <div class="leftCol">
                 <section class="special">
-                    <h2>Special</h2>
-                    <div class="leftCol">
-                        <input />
-                        <input />
-                        <input />
-                        <input />
-                        <input />
-                        <input />
-                        <input />
-                        <div class="special-prana">
-                            <p>Prana</p>
-                            <div class="score"></div><div class="score"></div><div class="score"></div><div class="score"></div><div class="score"></div>
-                        </div>
+                    <h2>Compétences</h2>
+                    <div class="leftCol" style="width:30%">
+                        Nom & Cout 
+                        <textarea style="height:2%"></textarea>
+                        <textarea style="height:2%"></textarea>
+                        <textarea style="height:2%"></textarea>
+                        <textarea style="height:2%"></textarea>
+                        <textarea style="height:2%"></textarea>
+                        <textarea style="height:2%"></textarea>
                     </div>
-                    <div class="rightCol">
-                        <input />
-                        <input />
-                        <input />
-                        <input />
-                        <input />
-                        <input />
-                        <input />
-                        <div class="special-karma">
-                            <p>Karma</p>
-                            <div class="score"></div><div class="score"></div><div class="score"></div><div class="score"></div><div class="score"></div>
-                        </div>
-                    </div>
+                    <div class="rightCol" style="width: 63%;">
+                        Description
+                        <textarea style="height:2%"></textarea>
+                        <textarea style="height:2%"></textarea>
+                        <textarea style="height:2%"></textarea>
+                        <textarea style="height:2%"></textarea>
+                        <textarea style="height:2%"></textarea>
+                        <textarea style="height:2%"></textarea>
+
                 </section>
             </div>
             <div class="rightCol">
                 <section class="gear">
                     <h2>Gear</h2>
                     <div class="leftCol">
-                        Arme principale <input /> 
-                        Arme secondaire <input /> 
-                        Armure <input />
-                        <input />
-                        <input />
-                        <input />
-                        <input />
-                        <input />
+                         <input /> Arme principale
+                         <input /> Arme secondaire
+                         <input /> Armure
+                        <input /> Amulette
+                        <input /> Bouclier
+                        <input /> Charme
+
                     </div>
                     <div class="rightCol">
-                        Dégats <input type="number"/>
-                        Dégats <input type="number"/>
-                        Parade <input type="number"/>
-                        <input />
-                        <input />
-                        <input />
-                        <input />
-                        <p class="gear-coin">Coin</p>
+                         <input type="number"/> Dégats
+                         <input type="number"/> Dégats
+                         <input type="number"/> Parade
+                        <input /> Mana
+                        <input /> Parade
+                        <input /> Charisme
+
                         </div>
                     </div>
-                    
+                    <div style="text-align:center;">
+                        <h2>Inventaire</h2>
+                        <input style="width:100%"/>
+                        <input style="width:100%"/>
+                        <input style="width:100%"/>
+                        <input style="width:100%"/>
+                        <input style="width:100%"/>
+                        <input style="width:100%"/>
+                        <input style="width:100%"/>
+                        <input style="width:100%"/>
+                    </div>
                 </section>
             </div>
 
         </main>
         <footer>
-            <div class="copyright">MIT Licensed &copy; 2016 Ville Pelkonen</div>
+            <div class="copyright">MIT Licensed &copy; 2016 Ville Pelkonen<br>MIT Licensed &copy; 2022 kyaeh</div>
         </footer>
         </page>
 

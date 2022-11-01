@@ -78,6 +78,7 @@ fieldset {
 
 textarea {
     resize: vertical;
+    background-color: transparent;
 }
 
 /* ==========================================================================
@@ -111,7 +112,7 @@ page[size="A4"] {
     position: relative;
     background: #624F82;
     width: 18cm;
-    height: 36.7cm;
+    height: 43.25cm;
     padding: 1.5cm; /* print margin */
     display: block;
     margin: 2rem auto;
