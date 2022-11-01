@@ -1,42 +1,26 @@
-// Avoid `console` errors in browsers that lack a console.
-(function() {
-    var method;
-    var noop = function () {};
-    var methods = [
-        'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
-        'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
-        'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
-        'timeline', 'timelineEnd', 'timeStamp', 'trace', 'warn'
-    ];
-    var length = methods.length;
-    var console = (window.console = window.console || {});
-
-    while (length--) {
-        method = methods[length];
-
-        // Only stub undefined methods.
-        if (!console[method]) {
-            console[method] = noop;
-        }
-    }
-}());
-
-$(document).ready(function(){
-    $("input").val(""); 
-    $(".trait").val("1"); 
-    
-});
-
 $("input").change(function(){
     $("#precision").val(Math.min(17,Math.round(
+        // precision = agilité/2 + dexterité/1.25 
         $("#agilite").val()/2+$("#dexterite").val()/1.25
     )));
-
+        //dégats = force
     $("#degats").val(Math.min(17,Math.round($("#force").val())));
+        //magie = intelligence/2 + concentration/4
+    $("#magie").val();
+        // critique = force/2 + agilité/2
     $("#crit").val(Math.round(
         $("#force").val()/2+$("#agilite").val()/2
-        ));
+    ));
+        //  buff&debuff = concentration/2 + dextérité/2
+    $("#buff").val();
+        // parade = constitution/2.5
+    $("#parade").val();
+        // esquive = agilité + age + taille + poids
+    $("#esquive").val();
+
   }); 
+
+
 
 
 
@@ -75,27 +59,54 @@ function sendMessage(stat) {
 
 function exportData(){
     var json_arr = {};
-        json_arr["charname"] = $("#charname").val();
-        json_arr["race"] = $("#race").val();
-        json_arr["faction"] = $("#faction").val();
-
-        var json_string = JSON.stringify(json_arr);
-        if(window.confirm(json_string+" \nVoulez vous copier dans le presse papier?")){
-            navigator.clipboard.writeText(json_string);
-        }
+    json_arr["charname"] = $("#charname").val();
+    json_arr["race"] = $("#race").val();
+    json_arr["faction"] = $("#faction").val();
+    json_arr["tikimis"] = $("#tikimis").is(":checked");
+    json_arr["taille"] = $("#taille").val();
+    json_arr["poids"] = $("#poids").val();
+    json_arr["age"] = $("#age").val();
+    var json_string = JSON.stringify(json_arr);
+    if(window.confirm(json_string+" \nVoulez vous enregistrer en fichier?")){
+        var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(json_arr));
+        var dlAnchorElem = document.getElementById('downloadAnchorElem');
+        dlAnchorElem.setAttribute("href",     dataStr     );
+        dlAnchorElem.setAttribute("download", $("#charname").val()+" Fiche Perso.json");
+        dlAnchorElem.click();
+    }
+}
+$(document).ready(function(){
+    $("input").val(""); 
+    $(".trait").val("1"); 
     
-}
+});
 
-function importData(){
-    data = JSON.parse($("#importjson").val());
-    //console.log(data["charname"]);
-    $("#charname").val(data["charname"]);
-    $("#race").val(data["race"]);
-    $("#faction").val(data["faction"]);
-}
+var openFile = function(event) {
+    if (!confirm("Voulez vous importer ce fichier?")) return;
+    var input = event.target;
+
+    var reader = new FileReader();
+    reader.onload = function(){
+      var text = reader.result;
+      console.log(reader.result.substring(0, 200));
+      data = JSON.parse(text);
+      $("#charname").val(data.charname);
+      $("#race").val(data.race);
+      $("#faction").val(data.faction);
+      if(data.tikimis == "true") $("#tikimis").prop("checked", true);
+      else $("#tikimis").prop("checked", true);
+      $("#taille").val(data.taille);
+      $("#poids").val(data.poids);
+      $("#age").val(data.age);
+    };
+    reader.readAsText(input.files[0]);
+
+    //console.log(reader.result);
+  };
 
 $(window).bind('beforeunload',function(){
     
    return 'are you sure you want to leave?';
 
 });
+

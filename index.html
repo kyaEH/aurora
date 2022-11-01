@@ -7,18 +7,20 @@
         <meta name="description" content="Fiche de personnage - Le faisceau d'Aurora (V4.0)">
         <link href='https://fonts.googleapis.com/css?family=Merriweather|Uncial+Antiqua' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <link rel="stylesheet" href="normalize.css">
         <link rel="stylesheet" href="main.css">
+        <link rel="icon" type="image/x-icon" href="favicon2.ico">
     </head>
     <body>
     <page size="A4">
         <main role="main">
             <h1>Le Faisceau D'aurora</h1>
             <h3>Fiche de personnage <span>v4.0</span></h3>
-            <input type="text" id="importjson">
-            <button style="color:black;" onclick="importData()">Importer la fiche</button>
-            <button style="color:black;" onclick="exportData()">Exporter la fiche</button>
+            
+            Importer une fiche: <input type="file" id="filesImp" value="Importer la fiche" placeholder="Importer la fiche" onchange='openFile(event)'/><br />
+            Exporter une fiche: <button style="color:black;font-family:Arial ,sans-serif;" onclick="exportData()">Exporter</button>
+            <a id="downloadAnchorElem" style="display:none"></a>
+            <input disabled/>
             
             <section class="profile">
                 <h2>Profile</h2>
@@ -26,12 +28,12 @@
                     <p>Nom</p> <input type="text" id="charname"/>
                     <p>Race</p> <input type="text" id="race"/>
                     <p>Faction</p> <input type="text" id="faction"/>
-                    <p>Tikimis?</p> <input type="checkbox">
+                    <p>Tikimis?</p> <input type="checkbox" id="tikimis">
                 </div>
                 <div class="rightCol">
-                    <p>Taille</p> <input type="number"/>
-                    <p>Poids</p> <input type="number"/>
-                    <p>Age</p> <input type="number"/>
+                    <p>Taille</p> <input type="number" id="taille"/>
+                    <p>Poids</p> <input type="number" id="poids"/>
+                    <p>Age</p> <input type="number" id="age"/>
                 </div>
             </section>
             <section class="condition">
@@ -68,7 +70,13 @@
                     Concentration <input type="number" class="trait" id="concentration"/><br>
                     Dextérité <input type="number" class="trait" id="dexterite"/><br>
                     Experience <input type="number" class="trait" id="experience"/><br>
-                    Lancer un dé: <button onclick="sendMessage($('#precision').val())">Précision</button><button onclick="sendMessage($('#buff').val())">Buff/debuff</button><button onclick="sendMessage()">Esquive</button>
+                    <p style="text-align: center;">🎲 Lancer un dé 🎲</p>
+                    <button onclick="sendMessage($('#precision').val())">Précision</button>
+                    <button onclick="sendMessage($('#buff').val())">Buff/debuff</button>
+                    <button onclick="sendMessage()">Esquive</button>
+                    <button onclick="sendMessage()">Esquive</button>
+                    <button onclick="sendMessage()">Esquive</button>
+                    <button onclick="sendMessage()">Esquive</button>
                 </section>
               <section class="abilities">
                 <h2>Talents</h2>
@@ -93,13 +101,13 @@
                      <input type="number" class="trait" id="parade"/> Parade<br>
                      <input type="number" class="trait" id="esquive"/> Esquive<br>
                     <h3>Social</h3>
-                     <input type="number" class="trait"/> Niveau<br>
-                     <input type="number" class="trait"/> Initiative<br>
-                     <input type="number" class="trait"/> Furtivité<br>
-                     <input type="number" class="trait"/> Perception<br>
-                     <input type="number" class="trait"/> Mana<br>
-                     <input type="number" class="trait"/> PV Max<br>
-                     <input type="number" class="trait"/> Charisme<br>
+                     <input type="number" class="trait" id="niveau"/> Niveau<br>
+                     <input type="number" class="trait" id="initiative"/> Initiative<br>
+                     <input type="number" class="trait" id="furtivite"/> Furtivité<br>
+                     <input type="number" class="trait" id="perception"/> Perception<br>
+                     <input type="number" class="trait" id="mana"/> Mana<br>
+                     <input type="number" class="trait" id="pvmax"/> PV Max<br>
+                     <input type="number" class="trait" id="charisme"/> Charisme<br>
                 </section>
             </div>
             <div class="leftCol">
@@ -127,7 +135,8 @@
             </div>
             <div class="rightCol">
                 <section class="gear">
-                    <h2>Gear</h2>
+                    <h2>Equipement</h2>
+                    <h3>Nom & Stat</h3>
                     <div class="leftCol">
                          <input /> Arme principale
                          <input /> Arme secondaire
@@ -149,7 +158,6 @@
                     </div>
                     <div style="text-align:center;">
                         <h2>Inventaire</h2>
-                        <input style="width:100%"/>
                         <input style="width:100%"/>
                         <input style="width:100%"/>
                         <input style="width:100%"/>
