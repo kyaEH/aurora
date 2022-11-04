@@ -75,6 +75,13 @@ function exportData(){
     json_arr["taille"] = $("#taille").val();
     json_arr["poids"] = $("#poids").val();
     json_arr["age"] = $("#age").val();
+    json_arr["force"] = $("#force").val();
+    json_arr["constitution"] = $("#constitution").val();
+    json_arr["agilite"] = $("#agilite").val();
+    json_arr["intelligence"] = $("#intelligence").val();
+    json_arr["concentration"] = $("#concentration").val();
+    json_arr["dexterite"] = $("#dexterite").val();
+    json_arr["experience"] = $("#experience").val();
     var json_string = JSON.stringify(json_arr);
     if(window.confirm(json_string+" \nVoulez vous enregistrer en fichier?")){
         var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(json_arr));
@@ -96,17 +103,25 @@ var openFile = function(event) {
 
     var reader = new FileReader();
     reader.onload = function(){
-      var text = reader.result;
-      console.log(reader.result.substring(0, 200));
-      data = JSON.parse(text);
-      $("#charname").val(data.charname);
-      $("#race").val(data.race);
-      $("#faction").val(data.faction);
-      if(data.tikimis == "true") $("#tikimis").prop("checked", true);
-      else $("#tikimis").prop("checked", true);
-      $("#taille").val(data.taille);
-      $("#poids").val(data.poids);
-      $("#age").val(data.age);
+        var text = reader.result;
+        console.log(reader.result.substring(0, 200));
+        data = JSON.parse(text);
+        $("#charname").val(data.charname);
+        $("#race").val(data.race);
+        $("#faction").val(data.faction);
+        if(data.tikimis == "true") $("#tikimis").prop("checked", true);
+        else $("#tikimis").prop("checked", true);
+        $("#taille").val(data.taille);
+        $("#poids").val(data.poids);
+        $("#age").val(data.age);
+        $("#force").val(data.force);
+        $("#constitution").val(data.constitution);
+        $("#agilite").val(data.agilite);
+        $("#intelligence").val(data.intelligence);
+        $("#concentration").val(data.concentration);
+        $("#dexterite").val(data.dexterite);
+        $("#experience").val(data.experience);
+
     };
     reader.readAsText(input.files[0]);
 
