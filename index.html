@@ -73,10 +73,10 @@
                     <p style="text-align: center;">🎲 Lancer un dé 🎲</p>
                     <button onclick="sendMessage($('#precision').val())">Précision</button>
                     <button onclick="sendMessage($('#buff').val())">Buff/debuff</button>
-                    <button onclick="sendMessage()">Esquive</button>
-                    <button onclick="sendMessage()">Esquive</button>
-                    <button onclick="sendMessage()">Esquive</button>
-                    <button onclick="sendMessage()">Esquive</button>
+                    <button onclick="sendMessage($('#esquive').val(),'esquive')">Esquive</button><br>
+                    <button onclick="sendMessage()">Furtivité</button>
+                    <button onclick="sendMessage()">Perception</button>
+                    <button onclick="sendMessage()">Charisme</button>
                 </section>
               <section class="abilities">
                 <h2>Talents</h2>
@@ -93,13 +93,13 @@
                 <section class="abilities">
                     <h2>Stats secondaires</h2>
                     <h3>Combat</h3>
-                    <input type="number" class="trait" id="precision" max="17" disabled/> Précision<br>
+                    <input type="number" class="trait" id="precision" disabled/> Précision<br>
                     <input type="number" class="trait" id="degats" disabled/> Dégats Phys<br>
-                     <input type="number" class="trait" id="magie"/> Magie<br>
-                     <input type="number" class="trait" id="crit"/> Critique<br>
-                     <input type="number" class="trait" id="buff"/> Buff/Debuff<br>
-                     <input type="number" class="trait" id="parade"/> Parade<br>
-                     <input type="number" class="trait" id="esquive"/> Esquive<br>
+                     <input type="number" class="trait" id="magie" disabled/> Magie<br>
+                     <input type="number" class="trait" id="crit" disabled/> Critique<br>
+                     <input type="number" class="trait" id="buff" disabled/> Buff/Debuff<br>
+                     <input type="number" class="trait" id="parade" disabled/> Parade<br>
+                     <input type="number" class="trait" id="esquive" disabled/> Esquive<br>
                     <h3>Social</h3>
                      <input type="number" class="trait" id="niveau"/> Niveau<br>
                      <input type="number" class="trait" id="initiative"/> Initiative<br>
