@@ -71,7 +71,6 @@ function exportData(){
     json_arr["charname"] = $("#charname").val();
     json_arr["race"] = $("#race").val();
     json_arr["faction"] = $("#faction").val();
-    json_arr["tikimis"] = $("#tikimis").is(":checked");
     json_arr["taille"] = $("#taille").val();
     json_arr["poids"] = $("#poids").val();
     json_arr["age"] = $("#age").val();
@@ -109,8 +108,6 @@ var openFile = function(event) {
         $("#charname").val(data.charname);
         $("#race").val(data.race);
         $("#faction").val(data.faction);
-        if(data.tikimis == "true") $("#tikimis").prop("checked", true);
-        else $("#tikimis").prop("checked", true);
         $("#taille").val(data.taille);
         $("#poids").val(data.poids);
         $("#age").val(data.age);
