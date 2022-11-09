@@ -50,8 +50,8 @@ function sendMessage(stat, statname) {
 	var url = _0x5016[0];
 	request[_0x5016[2]](_0x5016[1], url)
 	request.setRequestHeader('Content-type', 'application/json');
-	if (statname = "esquive") var calcul = Math.floor(Math.random() * 100 + 1);
-	else var calcul = Math.floor(Math.random() * 20 + 1);
+	if (statname == "esquive") {var calcul = Math.floor(Math.random() * 100 + 1);}
+	else {var calcul = Math.floor(Math.random() * 20 + 1);}
 	var charname = $("#charname").val();
 	if (stat == calcul || calcul == 1) {
 		test = JSON.stringify(charname + ": 🎲⚠️ - Dé réussi, vous avez fait: " + calcul + " en REUSSITE CRITIQUE!");
