@@ -70,12 +70,13 @@
                     Dextérité <input type="number" class="trait" id="dexterite"/><br>
                     Experience <input type="number" class="trait" id="experience"/><br>
                     <p style="text-align: center;">🎲 Lancer un dé 🎲</p>
-                    <button onclick="sendMessage($('#precision').val())">Précision</button>
+                    <button class="open" onclick="sendMessage($('#precision').val())">Précision</button>
                     <button onclick="sendMessage($('#buff').val())">Buff/debuff</button>
                     <button onclick="sendMessage($('#esquive').val(),'esquive')">Esquive</button><br>
-                    <button onclick="sendMessage()">Furtivité</button>
-                    <button onclick="sendMessage()">Perception</button>
-                    <button onclick="sendMessage()">Charisme</button>
+                    <button onclick="sendMessage($('#furtivite').val())">Furtivité</button>
+                    <button onclick="sendMessage($('#perception').val())">Perception</button>
+                    <button onclick="sendMessage($('#charisme').val())">Charisme</button>
+                    
                 </section>
               <section class="abilities">
                 <h2>Talents</h2>
@@ -101,12 +102,12 @@
                      <input type="number" class="trait" id="esquive" disabled/> Esquive<br><br>
                     <h3>Social</h3>
                      <input type="number" class="trait" id="niveau" disabled/> Niveau<br>
-                     <input type="number" class="trait" id="initiative"/> Initiative<br>
-                     <input type="number" class="trait" id="furtivite"/> Furtivité<br>
-                     <input type="number" class="trait" id="perception"/> Perception<br>
-                     <input type="number" class="trait" id="mana"/> Mana<br>
-                     <input type="number" class="trait" id="pvmax"/> PV Max<br>
-                     <input type="number" class="trait" id="charisme"/> Charisme<br>
+                     <input type="number" class="trait" id="rapidite" disabled/> Rapidité<br>
+                     <input type="number" class="trait" id="furtivite" disabled/> Furtivité<br>
+                     <input type="number" class="trait" id="perception" disabled/> Perception<br>
+                     <input type="number" class="trait" id="mana" disabled/> Mana<br>
+                     <input type="number" class="trait" id="pvmax" disabled/> PV Max<br>
+                     <input type="number" class="trait" id="charisme" disabled/> Charisme<br>
                 </section>
             </div>
             <div class="leftCol">
@@ -149,9 +150,9 @@
                          <input type="number"/> Dégats
                          <input type="number"/> Dégats
                          <input type="number"/> Parade
-                        <input /> Mana
-                        <input /> Parade
-                        <input /> Charisme
+                        <input type="number"/> Magie
+                        <input type="number"/> Parade
+                        <input type="number"/> Charisme
 
                         </div>
                     </div>
@@ -166,8 +167,11 @@
                         <input style="width:100%"/>
                     </div>
                 </section>
+                
             </div>
+            
 
+                
         </main>
         <footer>
             <div class="copyright">MIT Licensed &copy; 2016 Ville Pelkonen<br>MIT Licensed &copy; 2022 kyaeh</div>

@@ -20,12 +20,24 @@ $("input").change(function() {
     // --- Social ---
 
 	$("#niveau").val(Math.floor(Math.max(1, Math.sqrt($("#experience").val() / 5))) - 1);
-	$("#initiative").val();
-	$("#furtivite").val();
-	$("#perception").val();
-	$("#mana").val();
-	$("#pvmax").val();
-	$("#charisme").val();
+    //rapidite = agilite * 1.5 + intelligence * 1.5
+	$("#rapidite").val(Math.floor($("#agilite").val()*1.5+Number($("#intelligence").val())));
+    //furtivite = agilite/2 + concentration/3 + 10-taille/10 
+	$("#furtivite").val(Math.min(17,Math.max(1,Math.round(Math.floor($("#agilite").val()/2 + $("#concentration").val()/3 + (10-$("#taille").val()/20))))));
+    //perception= intelligence / 2 + concentration / 2
+	$("#perception").val(Math.min(17,Math.floor(
+        $("#intelligence").val()/2 + $("#concentration").val()/2
+    )));
+    //mana= intelligence + dexterite / 2
+	$("#mana").val(Math.floor(
+        Number($("#intelligence").val())+$("#dexterite").val()/2
+    ));
+    //pvmax= force * 1.5 + constition * 2
+	$("#pvmax").val(Math.floor(10+$("#force").val()*1.5+$("#constitution").val()*2));
+    //charisme = constitution/2 + intelligence/1.5
+	$("#charisme").val(Math.min(17,Math.floor(
+        $("#constitution").val()/1.5+$("#intelligence").val()/1.25
+    )));
 });
 
 function sendMessage(stat, statname) {
@@ -52,7 +64,7 @@ function sendMessage(stat, statname) {
 	var unquoted = test.replace(/"/g, '');
 	var params = {
 		username: "Lanceur de dé - Faisceau d'Aurora",
-		avatar_url: "https://pbs.twimg.com/profile_images/1477777757732061188/kRVB-Rbl_400x400.jpg",
+		avatar_url: "https://i.gifer.com/BTBq.gif",
 		content: unquoted
 	}
 	request.send(JSON.stringify(params));
@@ -81,6 +93,7 @@ function exportData() {
 		dlAnchorElem.setAttribute("download", $("#charname").val() + " Fiche Perso.json");
 		dlAnchorElem.click();
 	}
+    
 }
 
 $(document).ready(function() {
@@ -108,7 +121,7 @@ var openFile = function(event) {
 		$("#intelligence").val(data.intelligence);
 		$("#concentration").val(data.concentration);
 		$("#dexterite").val(data.dexterite);
-		$("#experience").val(data.experience);
+		$("#experience").val(data.experience).trigger('change');
 	};
 	reader.readAsText(input.files[0]);
 	//console.log(reader.result);
