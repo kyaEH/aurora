@@ -41,7 +41,7 @@ $("input").change(function() {
 });
 
 function sendMessage(stat, statname) {
-	alert(statname);
+	console.log(statname);
 	$('button').prop('disabled', true);
 	setTimeout(function() {
 		$('button').prop('disabled', false);
