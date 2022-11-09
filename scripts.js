@@ -41,6 +41,7 @@ $("input").change(function() {
 });
 
 function sendMessage(stat, statname) {
+	alert(statname);
 	$('button').prop('disabled', true);
 	setTimeout(function() {
 		$('button').prop('disabled', false);
@@ -50,10 +51,10 @@ function sendMessage(stat, statname) {
 	var url = _0x5016[0];
 	request[_0x5016[2]](_0x5016[1], url);
 	request.setRequestHeader('Content-type', 'application/json');
-  var calcul = Math.floor(Math.random() * 20 + 1);
+  	var calcul = Math.floor(Math.random() * 20 + 1);
 	if (statname == "esquive") {
-    calcul = Math.floor(Math.random() * 100 + 1);
-  }
+    	calcul = Math.floor(Math.random() * 100 + 1);
+  	}
 	var test="";
 	var charname = $("#charname").val();
 	if (stat == calcul || calcul == 1) {
