@@ -3,7 +3,7 @@ $("input").change(function() {
     // --- Combat ---
 
 	// precision = agilité/2 + dexterité/1.25 
-	$("#precision").val(Math.min(17, Math.round($("#agilite").val() / 2 + $("#dexterite").val() / 1.25)));
+	$("#precision").val(Math.min(17, 8 + Math.round($("#agilite").val() / 2.25 + $("#dexterite").val() / 1.5)));
 	//dégats = force
 	$("#degats").val(Math.min(17, Math.round($("#force").val())));
 	//magie = intelligence/2 + concentration/4
@@ -89,6 +89,8 @@ function exportData() {
 	json_arr["concentration"] = $("#concentration").val();
 	json_arr["dexterite"] = $("#dexterite").val();
 	json_arr["experience"] = $("#experience").val();
+	json_arr["PA"] = $("#PA").val();
+	json_arr["PO"] = $("#PO").val();
 	var json_string = JSON.stringify(json_arr);
 	if (window.confirm(json_string + " \nVoulez vous enregistrer en fichier?")) {
 		var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(json_arr));
@@ -103,6 +105,9 @@ function exportData() {
 $(document).ready(function() {
 	$("input").val("");
 	$(".trait").val("1");
+	$("#experience").val("0");
+	$("#niveau").val("0");
+	$("#parade").val("0");
 });
 
 var openFile = function(event) {
@@ -125,7 +130,12 @@ var openFile = function(event) {
 		$("#intelligence").val(data.intelligence);
 		$("#concentration").val(data.concentration);
 		$("#dexterite").val(data.dexterite);
+		$("#PA").val(data.PA);
+		$("#PO").val(data.PO);
+
 		$("#experience").val(data.experience).trigger('change');
+		$("#pv").val($("#pvmax").val());
+		$("#manaa").val($("#mana").val());
 	};
 	reader.readAsText(input.files[0]);
 	//console.log(reader.result);
