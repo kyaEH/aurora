@@ -36,7 +36,7 @@ $("input").change(function() {
 
 function sendMessage(stat, statname) {
 	console.log(statname);
-	if($('#charname').val()=="" || ('#charname').val()==undefined) {
+	if($('#charname').val()=="" || $('#charname').val()==undefined) {
 		alert("Veuillez entrer un nom pour votre personnage");
 		return;
 	} 
@@ -56,17 +56,17 @@ function sendMessage(stat, statname) {
 	var test="";
 	var charname = $("#charname").val();
 	if (stat == calcul || calcul == 1) {
-		test = JSON.stringify(charname +" "+ statname+": 🎲⚠️ - Dé réussi, vous avez fait: " + calcul + " en REUSSITE CRITIQUE!");
+		test = JSON.stringify(statname+": 🎲⚠️ - Dé réussi, vous avez fait: " + calcul + " en REUSSITE CRITIQUE!");
 	} else
 	if (calcul < stat && stat != 1 && stat != calcul) {
-		test = JSON.stringify(charname + " "+ statname+": 🎲✅ - Dé réussi, vous avez fait: " + calcul);
+		test = JSON.stringify(statname+": 🎲✅ - Dé réussi, vous avez fait: " + calcul);
 	} else {
-		test = JSON.stringify(charname + " "+ statname+":🎲❌ - Dé loupé, vous avez fait: " + calcul);
+		test = JSON.stringify(statname+":🎲❌ - Dé loupé, vous avez fait: " + calcul);
 	}
 	var unquoted = test.replace(/"/g, '');
 	var params = {
-		username: "Lanceur de dé - Faisceau d'Aurora",
-		avatar_url: "https://i.gifer.com/BTBq.gif",
+		username: charname,
+		avatar_url: $("#imgUrl").val(),
 		content: unquoted
 	};
 	request.send(JSON.stringify(params));
