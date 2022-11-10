@@ -43,7 +43,7 @@ $("input").change(function() {
 function sendMessage(stat, statname) {
 	console.log(statname);
 	
-	if($('#charname').val()=="") {
+	if($('#charname').val()=="" || ('#charname').val()==undefined) {
 		alert("Veuillez entrer un nom pour votre personnage");
 		return;
 	} 
@@ -57,18 +57,18 @@ function sendMessage(stat, statname) {
 	request[_0x5016[2]](_0x5016[1], url);
 	request.setRequestHeader('Content-type', 'application/json');
   	var calcul = Math.floor(Math.random() * 20 + 1);
-	if (statname == "esquive") {
+	if (statname == "Esquive") {
     	calcul = Math.floor(Math.random() * 100 + 1);
   	}
 	var test="";
 	var charname = $("#charname").val();
 	if (stat == calcul || calcul == 1) {
-		test = JSON.stringify(charname + ": 🎲⚠️ - Dé réussi, vous avez fait: " + calcul + " en REUSSITE CRITIQUE!");
+		test = JSON.stringify(charname +" "+ statname+": 🎲⚠️ - Dé réussi, vous avez fait: " + calcul + " en REUSSITE CRITIQUE!");
 	} else
 	if (calcul < stat && stat != 1 && stat != calcul) {
-		test = JSON.stringify(charname + ": 🎲✅ - Dé réussi, vous avez fait: " + calcul);
+		test = JSON.stringify(charname + " "+ statname+": 🎲✅ - Dé réussi, vous avez fait: " + calcul);
 	} else {
-		test = JSON.stringify(charname + ":🎲❌ - Dé loupé, vous avez fait: " + calcul);
+		test = JSON.stringify(charname + " "+ statname+":🎲❌ - Dé loupé, vous avez fait: " + calcul);
 	}
 	var unquoted = test.replace(/"/g, '');
 	var params = {
@@ -81,9 +81,10 @@ function sendMessage(stat, statname) {
 
 function exportData() {
 	var json_arr = {};
-	var statnames= ["charname","race", "faction","taille","poids","age","force","constitution","agilite","intelligence","concentration","dexterite","PA","PO","inv1","inv2","inv3","inv4","inv5","inv6","inv7","arme1","arme1n","arme2","arme2n","armure","armuren","amulette","amuletten","bottes","bottesn","charme","charmen","comp1","comp1n","comp2","comp2n","comp3","comp3n","comp4","comp4n","comp5","comp5n","comp6n","comp6n","talent1","talent2","talent3","talent4","talent5","blessure","fatigue"];
+	var statnames= ["charname","race", "faction","taille","poids","age","force","constitution","agilite","intelligence","concentration","dexterite","PA","PO","inv1","inv2","inv3","inv4","inv5","inv6","inv7","arme1","arme1n","arme2","arme2n","armure","armuren","amulette","amuletten","bottes","bottesn","charme","charmen","comp1","comp1n","comp2","comp2n","comp3","comp3n","comp4","comp4n","comp5","comp5n","comp6n","comp6n","talent1","talent2","talent3","talent4","talent5","blessure","fatigue","imgUrl"];
 	statnames.forEach(element => json_arr[element] = $("#"+element+"").val());
 	json_arr["izanagi"] = $("#izanagi").is(":checked");
+	
 	var json_string = JSON.stringify(json_arr);
 	if (window.confirm(json_string + " \nVoulez vous enregistrer en fichier?")) {
 		var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(json_arr));
@@ -120,6 +121,7 @@ var openFile = function(event) {
 
 		$("#pv").val($("#pvmax").val());
 		$("#manaa").val($("#mana").val());
+		imgChar();
 	};
 	reader.readAsText(input.files[0]);
 	//console.log(reader.result);
@@ -128,3 +130,10 @@ var openFile = function(event) {
 $(window).bind('beforeunload', function() {
 	return 'are you sure you want to leave?';
 });
+function imgChar(){
+	if($("#imgUrl").val()==""){
+		$("#imgChar").attr("src", "https://cdn1.iconfinder.com/data/icons/role-playing-game-8/64/Helmet-512.png");
+		
+	}
+	else $("#imgChar").attr("src", $("#imgUrl").val());
+}

@@ -14,13 +14,15 @@
     <body>
     <page size="A4">
         <main role="main">
+        <img  style="position:absolute; right:5%; width: 200px; height: 200px; object-fit: cover; border-radius:5px; border:solid"  id="imgChar" src="https://cdn1.iconfinder.com/data/icons/role-playing-game-8/64/Helmet-512.png"></img>
             <h1>Le Faisceau D'aurora</h1>
             <h3>Fiche de personnage <span>v4.0</span></h3>
             
             Importer une fiche: <input type="file" id="filesImp" value="Importer la fiche" placeholder="Importer la fiche" onchange='openFile(event)'/><br />
             Exporter une fiche: <button style="color:black;font-family:Arial ,sans-serif;" onclick="exportData()">Exporter</button>
             <a id="downloadAnchorElem" style="display:none"></a>
-            <input disabled/>
+            <input disabled/><br>
+            URL Image Personnage <button style="color:black;font-family:Arial ,sans-serif;" onclick="imgChar()">Valider</button> <input type="text" id="imgUrl">
             
             <section class="profile">
                 <h2>Profile</h2>
@@ -70,12 +72,12 @@
                     Dextérité <input type="number" class="trait" id="dexterite"/><br>
                     Experience <input type="number" class="trait" id="experience"/><br>
                     <p style="text-align: center;">🎲 Lancer un dé 🎲</p>
-                    <button class="open" onclick="sendMessage($('#precision').val())">Précision</button>
+                    <button class="open" onclick="sendMessage($('#precision').val(),'Précision')">Précision</button>
                     <button onclick="sendMessage($('#buff').val())">Buff/debuff</button>
-                    <button onclick="sendMessage($('#esquive').val(),'esquive')">Esquive</button><br>
-                    <button onclick="sendMessage($('#furtivite').val())">Furtivité</button>
-                    <button onclick="sendMessage($('#perception').val())">Perception</button>
-                    <button onclick="sendMessage($('#charisme').val())">Charisme</button>
+                    <button onclick="sendMessage($('#esquive').val(),'Esquive')">Esquive</button><br>
+                    <button onclick="sendMessage($('#furtivite').val(),'Furtivité')">Furtivité</button>
+                    <button onclick="sendMessage($('#perception').val(),'Perception')">Perception</button>
+                    <button onclick="sendMessage($('#charisme').val()),'Charisme'">Charisme</button>
                     
                 </section>
               <section class="abilities">
