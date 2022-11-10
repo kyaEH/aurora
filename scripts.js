@@ -5,44 +5,37 @@ $("input").change(function() {
 	// precision = agilité/2 + dexterité/1.25 
 	$("#precision").val(Math.min(17, 8 + Math.round($("#agilite").val() / 2.25 + $("#dexterite").val() / 1.5)));
 	//dégats = force + arme1 + arme2
-	$("#degats").val(Math.min(17, Math.round($("#force").val())));
-	//magie = intelligence/2 + concentration/4
-	$("#magie").val(Math.round($("#intelligence").val() / 2 + $("#concentration").val() / 3));
+	$("#degats").val(Math.min(17, Math.round($("#force").val()*1+$("#arme1").val()*1+$("#arme2").val()*1)));
+	//magie = intelligence/2 + concentration/4 + amulette
+	$("#magie").val(Math.round($("#intelligence").val() / 2 + $("#concentration").val() / 3 + $("#amulette").val()*1));
 	// critique = force/2 + agilité/2
 	$("#crit").val(Math.round($("#force").val() / 2 + $("#agilite").val() / 2));
 	//  buff&debuff = concentration/2 + dextérité/2
 	$("#buff").val(Math.min(17, Math.round($("#concentration").val() / 2 + $("#dexterite").val() / 2)));
-	// parade = constitution/2.5
-	$("#parade").val(Math.round($("#constitution").val() / 2.5));
+	// parade = constitution/2.5 + armure
+	$("#parade").val(Math.round($("#constitution").val() / 2.5+$("#armure").val()*1));
 	// esquive = agilité + age + taille + poids
 	$("#esquive").val(Math.min(75, Math.round(Number($("#agilite").val()) + 90 - (Number($("#age").val()) / 2 + Number($("#taille").val()) / 10 + Number($("#poids").val()) / 5))));
 	
     // --- Social ---
 
 	$("#niveau").val(Math.floor(Math.max(1, Math.sqrt($("#experience").val() / 5))) - 1);
-    //rapidite = agilite * 1.5 + intelligence * 1.5
-	$("#rapidite").val(Math.floor($("#agilite").val()*1.5+Number($("#intelligence").val())));
+    //rapidite = agilite * 1.5 + intelligence * 1.5 + bottes
+	$("#rapidite").val(Math.floor($("#agilite").val()*1.5+$("#intelligence").val()*1 + $("#bottes").val()*1));
     //furtivite = agilite/2 + concentration/3 + 10-taille/10 
 	$("#furtivite").val(Math.min(17,Math.max(1,Math.round(Math.floor($("#agilite").val()/2 + $("#concentration").val()/3 + (10-$("#taille").val()/20))))));
     //perception= intelligence / 2 + concentration / 2
-	$("#perception").val(Math.min(17,Math.floor(
-        $("#intelligence").val()/2 + $("#concentration").val()/2
-    )));
+	$("#perception").val(Math.min(17,Math.floor($("#intelligence").val()/2 + $("#concentration").val()/2)));
     //mana= intelligence + dexterite / 2
-	$("#mana").val(Math.floor(
-        Number($("#intelligence").val())+$("#dexterite").val()/2
-    ));
+	$("#mana").val(Math.floor($("#intelligence").val()*1+$("#dexterite").val()/2));
     //pvmax= force * 1.5 + constition * 2
 	$("#pvmax").val(Math.floor(10+$("#force").val()*1.5+$("#constitution").val()*2));
-    //charisme = constitution/2 + intelligence/1.5
-	$("#charisme").val(Math.min(17,Math.floor(
-        $("#constitution").val()/1.5+$("#intelligence").val()/1.25
-    )));
+    //charisme = constitution/2 + intelligence/1.5 + charme
+	$("#charisme").val(Math.min(17,Math.floor($("#constitution").val()/1.5+$("#intelligence").val()/1.25+$("#charme").val()*1)));
 });
 
 function sendMessage(stat, statname) {
 	console.log(statname);
-	
 	if($('#charname').val()=="" || ('#charname').val()==undefined) {
 		alert("Veuillez entrer un nom pour votre personnage");
 		return;
@@ -81,7 +74,7 @@ function sendMessage(stat, statname) {
 
 function exportData() {
 	var json_arr = {};
-	var statnames= ["charname","race", "faction","taille","poids","age","force","constitution","agilite","intelligence","concentration","dexterite","PA","PO","inv1","inv2","inv3","inv4","inv5","inv6","inv7","arme1","arme1n","arme2","arme2n","armure","armuren","amulette","amuletten","bottes","bottesn","charme","charmen","comp1","comp1n","comp2","comp2n","comp3","comp3n","comp4","comp4n","comp5","comp5n","comp6n","comp6n","talent1","talent2","talent3","talent4","talent5","blessure","fatigue","imgUrl"];
+	var statnames= ["charname","race", "faction","taille","poids","age","force","constitution","agilite","intelligence","concentration","dexterite","experience","PA","PO","inv1","inv2","inv3","inv4","inv5","inv6","inv7","arme1","arme1n","arme2","arme2n","armure","armuren","amulette","amuletten","bottes","bottesn","charme","charmen","comp1","comp1n","comp2","comp2n","comp3","comp3n","comp4","comp4n","comp5","comp5n","comp6n","comp6n","talent1","talent2","talent3","talent4","talent5","blessure","fatigue","imgUrl"];
 	statnames.forEach(element => json_arr[element] = $("#"+element+"").val());
 	json_arr["izanagi"] = $("#izanagi").is(":checked");
 	
@@ -93,7 +86,6 @@ function exportData() {
 		dlAnchorElem.setAttribute("download", $("#charname").val() + " Fiche Perso.json");
 		dlAnchorElem.click();
 	}
-    
 }
 
 $(document).ready(function() {
@@ -114,11 +106,11 @@ var openFile = function(event) {
 		console.log(reader.result.substring(0, 200));
 		data = JSON.parse(text);
 		for (const [key, value] of Object.entries(data)) {
-			$("#"+key).val(value).trigger('change');
+			$("#"+key).val(value);
 		  }
 		  $('#izanagi').prop('checked', data.izanagi);
 		//$("#charname").val(data.charname);
-
+		$("#charname").trigger('change');
 		$("#pv").val($("#pvmax").val());
 		$("#manaa").val($("#mana").val());
 		imgChar();
