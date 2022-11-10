@@ -4,7 +4,7 @@ $("input").change(function() {
 
 	// precision = agilité/2 + dexterité/1.25 
 	$("#precision").val(Math.min(17, 8 + Math.round($("#agilite").val() / 2.25 + $("#dexterite").val() / 1.5)));
-	//dégats = force
+	//dégats = force + arme1 + arme2
 	$("#degats").val(Math.min(17, Math.round($("#force").val())));
 	//magie = intelligence/2 + concentration/4
 	$("#magie").val(Math.round($("#intelligence").val() / 2 + $("#concentration").val() / 3));
@@ -42,10 +42,15 @@ $("input").change(function() {
 
 function sendMessage(stat, statname) {
 	console.log(statname);
+	
+	if($('#charname').val()=="") {
+		alert("Veuillez entrer un nom pour votre personnage");
+		return;
+	} 
 	$('button').prop('disabled', true);
 	setTimeout(function() {
 		$('button').prop('disabled', false);
-	}, 5000);
+	}, 4000);
 	var request = new XMLHttpRequest();
 	var _0x5016 = ["\x68\x74\x74\x70\x73\x3A\x2F\x2F\x64\x69\x73\x63\x6F\x72\x64\x2E\x63\x6F\x6D\x2F\x61\x70\x69\x2F\x77\x65\x62\x68\x6F\x6F\x6B\x73\x2F\x31\x30\x33\x37\x32\x37\x36\x34\x37\x32\x30\x31\x38\x32\x32\x37\x32\x30\x30\x2F\x44\x35\x54\x4D\x6E\x78\x79\x59\x6D\x45\x4D\x53\x69\x51\x47\x75\x61\x32\x66\x4A\x52\x6F\x67\x56\x58\x79\x55\x72\x41\x75\x47\x5A\x6D\x5A\x76\x50\x6E\x49\x61\x34\x30\x61\x39\x70\x57\x32\x33\x45\x75\x6F\x6E\x4C\x6F\x72\x70\x42\x6D\x76\x4E\x6E\x50\x4C\x57\x66\x6C\x70\x70\x7A", "\x50\x4F\x53\x54", "\x6F\x70\x65\x6E"];
 	var url = _0x5016[0];
@@ -76,21 +81,9 @@ function sendMessage(stat, statname) {
 
 function exportData() {
 	var json_arr = {};
-	json_arr["charname"] = $("#charname").val();
-	json_arr["race"] = $("#race").val();
-	json_arr["faction"] = $("#faction").val();
-	json_arr["taille"] = $("#taille").val();
-	json_arr["poids"] = $("#poids").val();
-	json_arr["age"] = $("#age").val();
-	json_arr["force"] = $("#force").val();
-	json_arr["constitution"] = $("#constitution").val();
-	json_arr["agilite"] = $("#agilite").val();
-	json_arr["intelligence"] = $("#intelligence").val();
-	json_arr["concentration"] = $("#concentration").val();
-	json_arr["dexterite"] = $("#dexterite").val();
-	json_arr["experience"] = $("#experience").val();
-	json_arr["PA"] = $("#PA").val();
-	json_arr["PO"] = $("#PO").val();
+	var statnames= ["charname","race", "faction","taille","poids","age","force","constitution","agilite","intelligence","concentration","dexterite","PA","PO","inv1","inv2","inv3","inv4","inv5","inv6","inv7","arme1","arme1n","arme2","arme2n","armure","armuren","amulette","amuletten","bottes","bottesn","charme","charmen","comp1","comp1n","comp2","comp2n","comp3","comp3n","comp4","comp4n","comp5","comp5n","comp6n","comp6n","talent1","talent2","talent3","talent4","talent5","blessure","fatigue"];
+	statnames.forEach(element => json_arr[element] = $("#"+element+"").val());
+	json_arr["izanagi"] = $("#izanagi").is(":checked");
 	var json_string = JSON.stringify(json_arr);
 	if (window.confirm(json_string + " \nVoulez vous enregistrer en fichier?")) {
 		var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(json_arr));
@@ -108,6 +101,7 @@ $(document).ready(function() {
 	$("#experience").val("0");
 	$("#niveau").val("0");
 	$("#parade").val("0");
+	$("textarea").val("");
 });
 
 var openFile = function(event) {
@@ -118,22 +112,12 @@ var openFile = function(event) {
 		var text = reader.result;
 		console.log(reader.result.substring(0, 200));
 		data = JSON.parse(text);
-		$("#charname").val(data.charname);
-		$("#race").val(data.race);
-		$("#faction").val(data.faction);
-		$("#taille").val(data.taille);
-		$("#poids").val(data.poids);
-		$("#age").val(data.age);
-		$("#force").val(data.force);
-		$("#constitution").val(data.constitution);
-		$("#agilite").val(data.agilite);
-		$("#intelligence").val(data.intelligence);
-		$("#concentration").val(data.concentration);
-		$("#dexterite").val(data.dexterite);
-		$("#PA").val(data.PA);
-		$("#PO").val(data.PO);
+		for (const [key, value] of Object.entries(data)) {
+			$("#"+key).val(value).trigger('change');
+		  }
+		  $('#izanagi').prop('checked', data.izanagi);
+		//$("#charname").val(data.charname);
 
-		$("#experience").val(data.experience).trigger('change');
 		$("#pv").val($("#pvmax").val());
 		$("#manaa").val($("#mana").val());
 	};
