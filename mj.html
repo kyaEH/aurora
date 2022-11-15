@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Test</title>
+        <link type="favicon" href="favicon2.ico">
+        <style>
+table, td {
+    border: 1px solid #333;
+}
+
+thead, tfoot {
+    background-color: #333;
+    color: #fff;
+}
+</style>
+    </head>
+    <body>
+        <h1>Dés MJ</h1>
+        <input type="number" id="nb" value="1"> Nombre de dé
+        <button onclick="lancerDe('20');">Dé 20</button>
+        <button onclick="lancerDe('100');">Dé 100</button>
+        <h1>Bestiaire</h1>
+        <table>
+    <thead>
+        <tr>
+            <th colspan="1">Nom du monstre</th>
+            <th colspan="1">Image</th>
+            <th colspan="1">Dés</th>
+            <th colspan="1">Niveau</th>
+            <th colspan="1">Rapidité</th>
+            <th colspan="1">Attaque</th>
+            <th colspan="1">Parade</th>
+            <th colspan="1">Précision</th>
+            <th colspan="1">Esquive</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Rat</td>
+            <td><input type="text" id="imgUrlRat" value="https://i.pinimg.com/originals/0b/7b/ed/0b7bedcb3236805cbe5a6d7274516fb0.png"></td>
+            <td><button onclick="dice('Rat','atq')">ATQ</button><button>Autre</button></td>
+            <td><input type="number" id="niveauRat" value="1"></td>
+            <td><input type="number" id="rapiditeRat" value="10"></td>
+            <td><input type="number" id="attaqueRat" value="2"></td>
+            <td><input type="number" id="paradeRat" value="0"></td>
+            <td><input type="number" id="precisionRat" value="15"></td>
+            <td><input type="number" id="esquiveRat" value="25"></td>
+        </tr>
+    </tbody>
+</table>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+<script src="script2.js"></script>
+    </body>
+</html>

@@ -3,7 +3,7 @@ $("input").change(function() {
     // --- Combat ---
 
 	// precision = agilité/2 + dexterité/1.25 
-	$("#precision").val(Math.min(17, 8 + Math.round($("#agilite").val() / 2.25 + $("#dexterite").val() / 1.5)));
+	$("#precision").val(Math.min(17, 10 + Math.round($("#agilite").val() / 2.75 + $("#dexterite").val() / 2)));
 	//dégats = force + arme1 + arme2
 	$("#degats").val(Math.min(17, Math.round($("#force").val()*1+$("#arme1").val()*1+$("#arme2").val()*1)));
 	//magie = intelligence/2 + concentration/4 + amulette
