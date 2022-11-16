@@ -2,12 +2,12 @@ $("input").change(function() {
 	
     // --- Combat ---
 
-	// precision = agilité/2 + dexterité/1.25 
-	$("#precision").val(Math.min(17, 10 + Math.round($("#agilite").val() / 2.75 + $("#dexterite").val() / 2)));
+	// precision = agilité/2.75 + dexterité/2 
+	$("#precision").val(Math.min(18, 9 + Math.round($("#agilite").val() / 2.75 + $("#dexterite").val() / 2)));
 	//dégats = force + arme1 + arme2
 	$("#degats").val(Math.min(17, Math.round($("#force").val()*1+$("#arme1").val()*1+$("#arme2").val()*1)));
-	//magie = intelligence/2 + concentration/4 + amulette
-	$("#magie").val(Math.round($("#intelligence").val() / 2 + $("#concentration").val() / 3 + $("#amulette").val()*1));
+	//magie = intelligence/1.25 + concentration/2 + amulette
+	$("#magie").val(Math.round($("#intelligence").val() / 1.25 + $("#concentration").val() / 2 + $("#amulette").val()*1));
 	// critique = force/2 + agilité/2
 	$("#crit").val(Math.round($("#force").val() / 2 + $("#agilite").val() / 2));
 	//  buff&debuff = concentration/2 + dextérité/2
@@ -73,13 +73,18 @@ function sendMessage(stat, statname) {
 }
 
 function exportData() {
+	if($("#charname").val()==""){
+		alert("La fiche est vide / nom manquant");
+		return;
+	}
 	var json_arr = {};
 	var statnames= ["charname","race", "faction","taille","poids","age","force","constitution","agilite","intelligence","concentration","dexterite","experience","PA","PO","inv1","inv2","inv3","inv4","inv5","inv6","inv7","arme1","arme1n","arme2","arme2n","armure","armuren","amulette","amuletten","bottes","bottesn","charme","charmen","comp1","comp1n","comp2","comp2n","comp3","comp3n","comp4","comp4n","comp5","comp5n","comp6n","comp6n","talent1","talent2","talent3","talent4","talent5","blessure","fatigue","imgUrl"];
 	statnames.forEach(element => json_arr[element] = $("#"+element+"").val());
 	json_arr["izanagi"] = $("#izanagi").is(":checked");
 	
 	var json_string = JSON.stringify(json_arr);
-	if (window.confirm(json_string + " \nVoulez vous enregistrer en fichier?")) {
+	if (window.confirm("Voulez vous enregistrer la fiche de "+$('#charname').val()+" en fichier?\n(elle sera aussi dans votre presse papier si problème de sauvegarde)")) {
+		navigator.clipboard.writeText(json_string);
 		var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(json_arr));
 		var dlAnchorElem = document.getElementById('downloadAnchorElem');
 		dlAnchorElem.setAttribute("href", dataStr);
@@ -95,9 +100,14 @@ $(document).ready(function() {
 	$("#niveau").val("0");
 	$("#parade").val("0");
 	$("textarea").val("");
+	$("#esquive").val("75");
+	$("#precision").val("10");
+	$("#pvmax").val("13");
+	$("#furtivite").val("10");
 });
 
 var openFile = function(event) {
+	
 	if (!confirm("Voulez vous importer ce fichier?")) return;
 	var input = event.target;
 	var reader = new FileReader();
