@@ -64,9 +64,12 @@ function sendMessage(stat, statname) {
 		test = JSON.stringify(statname+":🎲❌ - Dé loupé, vous avez fait: " + calcul);
 	}
 	var unquoted = test.replace(/"/g, '');
+	var image=$("#imgUrl").val();
+	
+	if(image =="") image="https://cdn1.iconfinder.com/data/icons/role-playing-game-8/64/Helmet-512.png";
 	var params = {
 		username: charname,
-		avatar_url: $("#imgUrl").val(),
+		avatar_url: image,
 		content: unquoted
 	};
 	request.send(JSON.stringify(params));
