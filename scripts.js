@@ -107,6 +107,7 @@ $(document).ready(function() {
 	$("#precision").val("10");
 	$("#pvmax").val("13");
 	$("#furtivite").val("10");
+	$("#perception").val("9");
 });
 
 var openFile = function(event) {
