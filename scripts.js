@@ -26,8 +26,8 @@ $("input").change(function() {
 	$("#furtivite").val(Math.min(17,Math.max(3,Math.round(Math.floor($("#agilite").val()/2 + $("#concentration").val()/3 + (10-$("#taille").val()/20))))));
     //perception= intelligence / 2 + concentration / 2
 	$("#perception").val(Math.min(17,Math.floor(8+$("#intelligence").val()/2 + $("#concentration").val()/2)));
-    //mana= intelligence + dexterite / 2
-	$("#mana").val(Math.floor(2+$("#intelligence").val()*1+$("#dexterite").val()/2));
+    //mana= intelligence *1.25 + dexterite *0.75
+	$("#mana").val(Math.floor(2+$("#intelligence").val()*1.25+$("#dexterite").val()*0.75));
     //pvmax= force * 1.5 + constition * 2
 	$("#pvmax").val(Math.floor(10+$("#force").val()*1.5+$("#constitution").val()*2));
     //charisme = constitution/2 + intelligence/1.5 + charme
@@ -97,12 +97,9 @@ function exportData() {
 }
 
 $(document).ready(function() {
-	$("input").val("");
+	$("input, textarea").val("");
 	$(".trait").val("1");
-	$("#experience").val("0");
-	$("#niveau").val("0");
-	$("#parade").val("0");
-	$("textarea").val("");
+	$("#experience, #niveau, #parade").val("0");
 	$("#esquive").val("75");
 	$("#precision").val("10");
 	$("#pvmax").val("13");
