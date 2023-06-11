@@ -29,7 +29,7 @@ $("input").change(function() {
     //mana= intelligence *1.25 + dexterite *0.75
 	$("#mana").val(Math.floor(2+$("#intelligence").val()*1.25+$("#dexterite").val()*0.75));
     //pvmax= force * 1.5 + constition * 2
-	$("#pvmax").val(Math.floor(10+$("#force").val()*1.5+$("#constitution").val()*2));
+	$("#pvmax").val(Math.floor(10+$("#force").val()*1.25+$("#constitution").val()*2));
     //charisme = constitution/2 + intelligence/1.5 + charme
 	$("#charisme").val(Math.min(17,5+Math.floor($("#constitution").val()/1.5+$("#intelligence").val()/1.25+$("#charme").val()*1)));
 });
