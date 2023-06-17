@@ -112,7 +112,7 @@ page[size="A4"] {
     position: relative;
     background: #624F82;
     width: 18cm;
-    height: 43.25cm;
+    height: 60;
     padding: 1.5cm; /* print margin */
     display: block;
     margin: 2rem auto;
@@ -448,4 +448,13 @@ footer{
     h3 {
         page-break-after: avoid;
     }
+}
+
+.inventory input[type="text"]{
+    width: 85%;
+    text-align: left;
+}
+.inventory input[type="number"]{
+    width: 12%;
+    margin-left: 5px;
 }
