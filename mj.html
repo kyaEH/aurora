@@ -12,6 +12,9 @@ thead, tfoot {
     background-color: #333;
     color: #fff;
 }
+.small{
+    width:50px;
+}
 </style>
     </head>
     <body>
@@ -30,25 +33,68 @@ thead, tfoot {
             <th colspan="1">Rapidité</th>
             <th colspan="1">Attaque</th>
             <th colspan="1">Parade</th>
+            <th colspan="1">Armure magique</th>
             <th colspan="1">Précision</th>
-            <th colspan="1">Esquive</th>
+            <th colspan="1">PV</th>
+            <th colspan="1">Notes</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <td>Rat</td>
             <td><input type="text" id="imgUrlRat" value="https://i.pinimg.com/originals/0b/7b/ed/0b7bedcb3236805cbe5a6d7274516fb0.png"></td>
-            <td><button onclick="dice('Rat','atq')">ATQ</button><button>Autre</button></td>
-            <td><input type="number" id="niveauRat" value="1"></td>
-            <td><input type="number" id="rapiditeRat" value="10"></td>
+            <td><button onclick="dice('Rat','atq')">ATQ</button></td>
+            <td><input class="small" type="number" id="niveauRat"  value="1"></td>
+            <td><input type="number" id="rapiditeRat" value="5"></td>
             <td><input type="number" id="attaqueRat" value="2"></td>
             <td><input type="number" id="paradeRat" value="0"></td>
-            <td><input type="number" id="precisionRat" value="15"></td>
-            <td><input type="number" id="esquiveRat" value="25"></td>
+            <td><input type="number" id="paradeMagiqueRat" value="0"></td>
+            <td><input type="number" id="precisionRat" value="12"></td>
+            <td><input type="number" id="pvRat" value="10"></td>
+            <td><input type="text"></td>
+        </tr>
+        <tr>
+            <td>Garde</td>
+            <td><input type="text" id="imgUrlGarde" value="https://www.dmsguild.com/images/8957/193701.jpg"></td>
+            <td><button onclick="dice('Garde','atq')">ATQ</button></td>
+            <td><input class="small" type="number" id="niveauGarde" value="1"></td>
+            <td><input type="number" id="rapiditeGarde" value="8"></td>
+            <td><input type="number" id="attaqueGarde" value="5"></td>
+            <td><input type="number" id="paradeGarde" value="5"></td>
+            <td><input type="number" id="paradeMagiqueGarde" value="3"></td>
+            <td><input type="number" id="precisionGarde" value="15"></td>
+            <td><input type="number" id="pvGarde" value="25"></td>
+            <td><input type="text"></td>
+            
+        </tr>
+        <tr>
+            <td>Corrompu</td>
+            <td><input type="text" id="imgUrlCorrompu" value="https://cdn.discordapp.com/attachments/1028320867182194840/1119926432869650432/image.png"></td>
+            <td><button onclick="dice('Corrompu','atq')">ATQ</button></td>
+            <td><input class="small" type="number" id="niveauCorrompu" value="1"></td>
+            <td><input type="number" id="rapiditeCorrompu" value="10"></td>
+            <td><input type="number" id="attaqueCorrompu" value="10"></td>
+            <td><input type="number" id="paradeCorrompu" value="2"></td>
+            <td><input type="number" id="paradeMagiqueCorrompu" value="0"></td>
+            <td><input type="number" id="precisionCorrompu" value="12"></td>
+            <td><input type="number" id="pvCorrompu" value="30"></td>
+            <td><input type="text"></td>
+        </tr>
+        <tr>
+            <td>Egeance de la corruption</td>
+            <td><input type="text" id="imgUrlEgeance" value="https://cdn.discordapp.com/attachments/1042073357149011988/1119929515469197312/corrupted_angel.jpg"></td>
+            <td><button onclick="dice('Egeance de la corruption','atq')">ATQ</button></td>
+            <td><input class="small" type="number" id="niveauEgeance" value="1"></td>
+            <td><input type="number" id="rapiditeEgeance" value="20"></td>
+            <td><input type="number" id="attaqueEgeance" value="10"></td>
+            <td><input type="number" id="paradeEgeance" value="2"></td>
+            <td><input type="number" id="paradeMagiqueEgeance" value="3"></td>
+            <td><input type="number" id="precisionEgeance" value="15"></td>
+            <td><input type="number" id="pvEgeance" value="250"></td>
+            <td><input type="text"></td>
         </tr>
     </tbody>
 </table>
-
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
 <script src="script2.js"></script>

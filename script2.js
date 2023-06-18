@@ -1,14 +1,26 @@
 function dice(mob, stat) {
-	var test = Math.floor(Math.random() * 20);
+	if (/\s/.test(mob)) {
+		mobName = mob.split(' ');
+		mobName = mobName[0];
+	}
+	else {
+		mobName = mob;
+	}
+	var test = Math.floor(Math.random() * 20)+1;
 	var message = "";
-    var img=$("#imgUrl"+mob).val();
-    
+    var img=$("#imgUrl"+mobName).val();
+    console.log(test);
 	if (stat == "atq") {
-		if (test <= Number($("#precision"+mob).val())) {
+		var degats = $("#attaque"+mobName).val()*1*$("#niveau"+mobName).val()
+		degats = degats + Math.floor(Math.random()*degats - degats/3);
+		if (test < Number($("#precision"+mobName).val()) && test != 1) {
 			
-            var degats = $("#attaque"+mob).val()*1*$("#niveau"+mob).val()
+            
             message = mob + " attaque: Il réussi son attaque! Il fait: "+degats+" de dégats";
-		} else {message = mob + " attaque: Il loupe son attaque!";}
+		}else if (test == Number($("#precision"+mobName).val()) || test==1){
+			message = mob + " attaque CRITIQUE: Il réussi son attaque! Il fait: "+Math.ceil(degats*1.25)+" de dégats dont "+Math.ceil(degats*0.25)+" de dégats critique!";
+		} 
+		else {message = mob + " attaque réduit: Il fait "+Math.floor(degats*0.75);}
 	}
 	var unquoted = message.replace(/"/g, '');
 	var request = new XMLHttpRequest();
@@ -26,7 +38,7 @@ function dice(mob, stat) {
 
 function lancerDe(de) {
 	i=0;
-    var message="---------\nDé: "+de+"\nLancement des dés: ";
+    var message="__Dé du MJ__\nValeur: "+de+"\nRésultats des dés: ";
     nb=$("#nb").val();
     while (i<nb){
    	    message = message +" |__"+Math.floor(Math.random()*de+1)+"__| " ;
@@ -40,7 +52,7 @@ function lancerDe(de) {
 	request.setRequestHeader('Content-type', 'application/json');
 	var params = {
 		username: "Maitre du Jeu",
-		avatar_url: "https://i.redd.it/lxbxr1xfssg51.png",
+		avatar_url: "https://pbs.twimg.com/profile_images/3383062294/26bbcf8aff54a03eb50a913cdfd9dcca.jpeg",
 		content: unquoted
 	};
 	request.send(JSON.stringify(params));
