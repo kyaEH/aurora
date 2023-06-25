@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>Fiche de personnage - Le faisceau d'Aurora</title>
-        <meta name="description" content="Fiche de personnage - Le faisceau d'Aurora (V4.1)">
+        <meta name="description" content="Fiche de personnage - Le faisceau d'Aurora (V4.3)">
         <link href='https://fonts.googleapis.com/css?family=Merriweather|Uncial+Antiqua' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="normalize.css">
@@ -16,7 +16,7 @@
         <main role="main">
         <img  style="position:absolute; right:10%; width: 200px; height: 200px; object-fit: cover; border-radius:5px; border:solid"  id="imgChar" src="https://cdn1.iconfinder.com/data/icons/role-playing-game-8/64/Helmet-512.png"></img>
             <h1>Le Faisceau D'aurora</h1>
-            <h3>Fiche de personnage <span>v4.1</span></h3>
+            <h3>Fiche de personnage <span>v4.3</span></h3>
             
             Importer une fiche: <input type="file" id="filesImp" value="Importer la fiche" placeholder="Importer la fiche" onchange='openFile(event)'/><br />
             Exporter une fiche: <button style="color:black;font-family:Arial ,sans-serif;" onclick="exportData()">Exporter</button>
@@ -71,13 +71,7 @@
                     Concentration <input type="number" class="trait" id="concentration"/><br>
                     Dextérité <input type="number" class="trait" id="dexterite"/><br>
                     Experience <input type="number" class="trait" id="experience"/><br>
-                    <p style="text-align: center;">🎲 Lancer un dé 🎲</p>
-                    <button class="open" onclick="sendMessage($('#precision').val(),'Précision')">Précision</button>
-                    <button onclick="sendMessage($('#buff').val(),'Buff / Debuff')">Buff/debuff</button>
-                    <button onclick="sendMessage($('#esquive').val(),'Esquive')">Esquive</button><br>
-                    <button onclick="sendMessage($('#furtivite').val(),'Furtivité')">Furtivité</button>
-                    <button onclick="sendMessage($('#perception').val(),'Perception')">Perception</button>
-                    <button onclick="sendMessage($('#charisme').val(),'Charisme')">Charisme</button>
+                    
                     
                 </section>
               <section class="abilities">
@@ -87,6 +81,7 @@
                 <input type="text" style="width: 100%;" id="talent3">
                 <input type="text"style="width: 100%;" id="talent4">
                 <input type="text"style="width: 100%;" id="talent5">
+                <input type="text"style="width: 100%;" id="talent6">
               </section>
                 
             </div>
@@ -110,12 +105,20 @@
                      <input type="number" class="trait" id="mana" disabled/> Mana<br>
                      <input type="number" class="trait" id="pvmax" disabled/> PV Max<br>
                      <input type="number" class="trait" id="charisme" disabled/> Charisme<br>
+                     
                 </section>
             </div>
-            <div class="leftCol">
-                <section class="special">
-                    <h2>Compétences</h2>
-                    <div class="leftCol" style="width:30%">
+            <h2 style="text-align: center;">🎲 Lancer un dé 🎲</h2>
+            <div style="text-align:center;">
+                    <button class="open" onclick="sendMessage($('#precision').val(),'Précision')">Précision</button>
+                    <button onclick="sendMessage($('#buff').val(),'Buff / Debuff')">Buff/debuff</button>
+                    <button onclick="sendMessage($('#esquive').val(),'Esquive')">Esquive</button>
+                    <button onclick="sendMessage($('#furtivite').val(),'Furtivité')">Furtivité</button>
+                    <button onclick="sendMessage($('#perception').val(),'Perception')">Perception</button>
+                    <button onclick="sendMessage($('#charisme').val(),'Charisme')">Charisme</button>
+                </div>
+            <h2>Compétences</h2>
+                    <div class="leftCol" style="width:25%">
                         Nom & Cout 
                         <textarea style="height:2%" id="comp1n"></textarea>
                         <textarea style="height:2%" id="comp2n"></textarea>
@@ -123,9 +126,9 @@
                         <textarea style="height:2%" id="comp4n"></textarea>
                         <textarea style="height:2%" id="comp5n"></textarea>
                         <textarea style="height:2%" id="comp6n"></textarea>
-                        <p>Don d'Izanagi</p>
+                        
                     </div>
-                    <div class="rightCol" style="width: 63%;">
+                    <div class="rightCol" style="width: 70%;">
                         Description
                         <textarea style="height:2%" id="comp1"></textarea>
                         <textarea style="height:2%" id="comp2"></textarea>
@@ -133,8 +136,20 @@
                         <textarea style="height:2%" id="comp4"></textarea>
                         <textarea style="height:2%" id="comp5"></textarea>
                         <textarea style="height:2%" id="comp6"></textarea>
-                        <input type="checkbox" id="izanagi">
-
+                        
+                    </div>
+            <div class="leftCol">
+                <section class="special">
+                    <h2>Effet d'équipement</h2>
+                    
+                        Nom & Cout 
+                        <textarea style="height:2%" id="equip1"></textarea>
+                        <textarea style="height:2%" id="equip2"></textarea>
+                        <textarea style="height:2%" id="equip3"></textarea>
+                        <textarea style="height:2%" id="equip4"></textarea>
+                        <textarea style="height:2%" id="equip5"></textarea>
+                        <textarea style="height:2%" id="equip6"></textarea>
+                        <p style="text-align: center;">Don d'Izanagi</p><input type="checkbox" id="izanagi">
                 </section>
             </div>
             <div class="rightCol">
@@ -161,6 +176,7 @@
                         </div>
                     </div>
                     <div class="inventory">
+                        
                         <h2>Inventaire</h2>
                         <input type="text" id="inv1" placeholder="Nom de l'objet"/><input type="number" id="inv1qte" placeholder="quantité">
                         <input type="text" id="inv2"/><input type="number" id="inv2qte">

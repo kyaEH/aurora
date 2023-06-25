@@ -79,6 +79,7 @@ fieldset {
 textarea {
     resize: vertical;
     background-color: transparent;
+    border-radius: 4px;
 }
 
 /* ==========================================================================
@@ -457,4 +458,8 @@ footer{
 .inventory input[type="number"]{
     width: 12%;
     margin-left: 5px;
+}
+
+button {
+    color:#624F82;
 }
