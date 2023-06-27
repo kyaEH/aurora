@@ -23,7 +23,7 @@ $("input").change(function() {
     //rapidite = agilite * 1.5 + intelligence * 1.5 + bottes
 	$("#rapidite").val(Math.floor($("#agilite").val()*1.5+$("#intelligence").val()*1 + $("#bottes").val()*1));
     //furtivite = agilite/2 + concentration/3 + 10-taille/10 
-	$("#furtivite").val(Math.min(17,Math.max(3,Math.round(Math.floor($("#agilite").val()/2 + $("#concentration").val()/3 + (10-$("#taille").val()/20))))));
+	$("#furtivite").val(Math.min(17,Math.max(3,Math.round(Math.floor($("#agilite").val()/2 + $("#concentration").val()/2.5 + (10-$("#taille").val()/20))))));
     //perception= intelligence / 2 + concentration / 2
 	$("#perception").val(Math.min(17,Math.floor(8+$("#intelligence").val()/2 + $("#concentration").val()*0.75)));
     //mana= intelligence *1.25 + dexterite *0.75
