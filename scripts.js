@@ -5,11 +5,11 @@ $("input").change(function() {
 	// precision = agilité/2.75 + dexterité/2 
 	$("#precision").val(Math.min(18, 9 + Math.round($("#agilite").val() / 2.75 + $("#dexterite").val() / 2)));
 	//dégats = force + arme1 + arme2
-	$("#degats").val(Math.min(200, Math.round($("#force").val()*1+$("#arme1").val()*1+$("#arme2").val()*1)));
+	$("#degats").val(Math.round($("#force").val()*1+$("#arme1").val()*1+$("#arme2").val()*1));
 	//magie = intelligence/1.25 + concentration/2 + amulette
 	$("#magie").val(Math.round($("#intelligence").val() / 1.25 + $("#concentration").val() / 2 + $("#amulette").val()*1));
 	// critique = force/2 + agilité/2
-	$("#crit").val(Math.round($("#force").val() / 2 + $("#agilite").val() / 2));
+	$("#crit").val(Math.round($("#force").val() / 2 + $("#agilite").val() / 2+$("#concentration").val()*0.25));
 	//  buff&debuff = concentration/2 + dextérité/2
 	$("#buff").val(Math.min(17, 2+Math.round($("#concentration").val() / 2 + $("#dexterite").val() / 2)));
 	// parade = constitution/2.5 + armure
@@ -25,7 +25,7 @@ $("input").change(function() {
     //furtivite = agilite/2 + concentration/3 + 10-taille/10 
 	$("#furtivite").val(Math.min(17,Math.max(3,Math.round(Math.floor($("#agilite").val()/2 + $("#concentration").val()/3 + (10-$("#taille").val()/20))))));
     //perception= intelligence / 2 + concentration / 2
-	$("#perception").val(Math.min(17,Math.floor(8+$("#intelligence").val()/2 + $("#concentration").val()/2)));
+	$("#perception").val(Math.min(17,Math.floor(8+$("#intelligence").val()/2 + $("#concentration").val()*0.75)));
     //mana= intelligence *1.25 + dexterite *0.75
 	$("#mana").val(Math.floor(2+$("#intelligence").val()*1.25+$("#dexterite").val()*0.75));
     //pvmax= force * 1.5 + constition * 2
@@ -105,6 +105,8 @@ $(document).ready(function() {
 	$("#pvmax").val("13");
 	$("#furtivite").val("10");
 	$("#perception").val("9");
+	$("#mana").val("4");
+	$("#charisme").val("6");
 });
 
 var openFile = function(event) {
