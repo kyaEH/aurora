@@ -115,6 +115,22 @@ $(document).ready(function() {
 	$("#perception").val("9");
 	$("#mana").val("4");
 	$("#charisme").val("6");
+	let searchParams = new URLSearchParams(window.location.search)
+	if(searchParams.get('encoding')){
+		let param = searchParams.get('encoding')
+		
+		var datas = atob(param);
+		
+		data = JSON.parse(datas);
+		for (const [key, value] of Object.entries(data)) {
+			$("#"+key).val(value);
+		  }
+		  $('#izanagi').prop('checked', data.izanagi);
+		//$("#charname").val(data.charname);
+		$("#charname").trigger('change');
+		imgChar();
+	}
+	
 });
 
 var openFile = function(event) {
