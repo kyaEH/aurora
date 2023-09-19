@@ -128,7 +128,10 @@ $(document).ready(function() {
 		console.log(param);
 		var datas = b64DecodeUnicode(param);
 		
-		
+		if (datas.includes("<") || datas.includes(">")){
+			alert("Please no XSS!")
+			return
+		}
 		data = JSON.parse(datas);
 		console.log(data);
 		for (const [key, value] of Object.entries(data)) {
