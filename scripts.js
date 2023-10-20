@@ -129,8 +129,8 @@ $(document).ready(function() {
 		var datas = b64DecodeUnicode(param);
 		
 		if (datas.includes("<") || datas.includes(">")){
-			alert("Please no XSS!")
-			return
+			alert("Please no XSS!");
+			return;
 		}
 		data = JSON.parse(datas);
 		console.log(data);
