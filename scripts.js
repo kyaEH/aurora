@@ -159,6 +159,9 @@ var openFile = function(event) {
 		data = JSON.parse(text);
 		for (const [key, value] of Object.entries(data)) {
 			$("#"+key).val(value);
+			if(key=="charname"){
+				sendLogs("Import Data: "+ value);
+			}
 		  }
 		  $('#izanagi').prop('checked', data.izanagi);
 		//$("#charname").val(data.charname);
@@ -166,7 +169,7 @@ var openFile = function(event) {
 		imgChar();
 	};
 	reader.readAsText(input.files[0]);
-	sendLogs("Import Data: "+ $("#charname").val());
+	
 	//console.log(reader.result);
 };
 
