@@ -18,7 +18,7 @@ function dice(mob, stat) {
             
             message = mob + " attaque: Il réussi son attaque! Il fait: "+degats+" de dégats";
 		}else if (test == Number($("#precision"+mobName).val()) || test==1){
-			message = mob + " attaque CRITIQUE: Il réussi son attaque! Il fait: "+Math.ceil(degats*1.25)+" de dégats dont "+Math.ceil(degats*0.25)+" de dégats critique!";
+			message = mob + " attaque CRITIQUE: Il réussi son attaque! Il fait: "+Math.ceil(degats*1.25)+" de dégats dont "+Math.ceil(degats*0.75)+" de dégats critique!";
 		} 
 		else {message = mob + " attaque réduit: Il fait "+Math.floor(degats*0.75);}
 	}
