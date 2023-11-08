@@ -107,6 +107,7 @@ body {
     background-image: url("./wallpaper.jpg");
     background-attachment: fixed;
     background-repeat: no-repeat;
+    background-size:100%;
 }
 
 page[size="A4"] {
