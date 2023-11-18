@@ -46,8 +46,11 @@
                       <p>Blessures</p>
                       <input type="number" id="blessure"> 
                       
+                      
                   </div>
+                  
               </div>
+              
               <div class="rightCol">
                   <div class="condition-spirit">
                     <input type="number" id="fatigue">
@@ -55,6 +58,7 @@
                       
                   </div>
               </div>
+              
               <div style="text-align:center;">
                 PV        Mana<br>
                 
@@ -62,6 +66,7 @@
                 <input type="number" id="pv" style="margin-right:10px;width:10%"/><input type="number" id="manaa" style="margin-left:10px;width:10%"/><img src="moon1.png" style=" transform: scaleX(-1);position: absolute; right:5%;" width="15%"></img><br>
              <input type="number" style="margin-right:10px;width:10%" id="PA"/><input type="number" style="margin-left:10px;width:10%" id="PO"/><br>
               PA        PO   
+              
             </div>
           </section>
             <div class="leftCol">
@@ -77,6 +82,7 @@
                     
                     
                 </section>
+                
               <section class="abilities">
                 <h2>Talents</h2>
                 <input type="text" style="width: 100%;" id="talent1">
@@ -86,7 +92,7 @@
                 <input type="text"style="width: 100%;" id="talent5">
                 <input type="text"style="width: 100%;" id="talent6">
               </section>
-                
+              
             </div>
 
             <div class="rightCol">
@@ -111,6 +117,7 @@
                      
                 </section>
             </div>
+            Don d'Izanagi <input type="checkbox" style="margin-left: 10px;" id="izanagi">
             <h2 style="text-align: center;">🎲 Lancer un dé 🎲</h2>
             <div style="text-align:center;">
                     <button class="open" onclick="sendMessage($('#precision').val(),'Précision')">Précision</button>
@@ -154,7 +161,7 @@
                         <textarea style="height:2%" id="equip4"></textarea>
                         <textarea style="height:2%" id="equip5"></textarea>
                         <textarea style="height:2%" id="equip6"></textarea>
-                        <p style="text-align: center;">Don d'Izanagi</p><input type="checkbox" id="izanagi">
+                        
                 </section>
             </div>
             <div class="rightCol">
@@ -162,22 +169,23 @@
                     <h2>Equipement</h2>
                     <h3>Nom & Stat</h3>
                     <div class="leftCol">
-                         <input id="arme1n"/> Arme principale
-                         <input id="arme2n"/> Arme secondaire
-                         <input id="armuren"/> Armure
-                        <input id="amuletten"/> Amulette
-                        <input id="bottesn"/> Chaussures
-                        <input id="charmen"/> Charme
+                         <input id="arme1n" placeholder="Arme principale"/> 
+                         <input id="arme2n" placeholder="Arme secondaire"/> 
+                         <input id="armuren" placeholder="Armure"/> 
+                        <input id="amuletten" placeholder="Amulette"/> 
+                        <input id="bottesn" placeholder="Chaussures"/> 
+                        <input id="charmen" placeholder="Charme"/> 
+                        <input id="lunetten" placeholder="Lunettes"/> 
 
                     </div>
                     <div class="rightCol">
-                         <input type="number" id="arme1"/> Dégâts
-                         <input type="number" id="arme2"/> Dégâts
-                         <input type="number" id="armure"/> Parade
-                        <input type="number" id="amulette"/> Magie
-                        <input type="number" id="bottes"/> Rapidité
-                        <input type="number" id="charme"/> Charisme
-
+                         <input type="number" id="arme1" class="smaller"/> Dégâts<br/>
+                         <input type="number" id="arme2" class="smaller"/> Dégâts<br/>
+                         <input type="number" id="armure" class="smaller"/> Parade<br/>
+                        <input type="number" id="amulette" class="smaller"/> Magie<br/>
+                        <input type="number" id="bottes" class="smaller"/> Rapidité<br/>
+                        <input type="number" id="charme" class="smaller"/> Charisme<br/>    
+                        <input type="number" id="lunette" class="smaller"/> Précision<br/> 
                         </div>
                     </div>
                     <div class="inventory">

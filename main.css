@@ -253,6 +253,7 @@ text-align: right;
 .gear input,
 .special input{
     width: 100%;
+    margin-bottom: 10%;
 }
 .gear-coin{
     margin:.46em 0 0 0;
@@ -463,4 +464,16 @@ footer{
 
 button {
     color:#624F82;
+}
+
+.smaller {
+    width: 50% !important;
+}
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+-moz-appearance: textfield;
 }
