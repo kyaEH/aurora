@@ -52,7 +52,7 @@ function sendMessage(stat, statname) {
 	$('button').prop('disabled', true);
 	setTimeout(function() {
 		$('button').prop('disabled', false);
-	}, 4000);
+	}, 1500);
 	var request = new XMLHttpRequest();
 	var _0x5016 = ["\x68\x74\x74\x70\x73\x3A\x2F\x2F\x64\x69\x73\x63\x6F\x72\x64\x2E\x63\x6F\x6D\x2F\x61\x70\x69\x2F\x77\x65\x62\x68\x6F\x6F\x6B\x73\x2F\x31\x30\x33\x37\x32\x37\x36\x34\x37\x32\x30\x31\x38\x32\x32\x37\x32\x30\x30\x2F\x44\x35\x54\x4D\x6E\x78\x79\x59\x6D\x45\x4D\x53\x69\x51\x47\x75\x61\x32\x66\x4A\x52\x6F\x67\x56\x58\x79\x55\x72\x41\x75\x47\x5A\x6D\x5A\x76\x50\x6E\x49\x61\x34\x30\x61\x39\x70\x57\x32\x33\x45\x75\x6F\x6E\x4C\x6F\x72\x70\x42\x6D\x76\x4E\x6E\x50\x4C\x57\x66\x6C\x70\x70\x7A", "\x50\x4F\x53\x54", "\x6F\x70\x65\x6E"];
 	var url = _0x5016[0];
@@ -66,20 +66,20 @@ function sendMessage(stat, statname) {
 	var test="";
 	var charname = $("#charname").val();
 	if (stat == calcul || calcul == 1) {
-		test = JSON.stringify(statname+": 🎲⚠️ - Dé réussi, vous avez fait: " + calcul + " en REUSSITE CRITIQUE!");
+		test = JSON.stringify("<a:dice2:1177970651072561213> ⚠️ **"+statname+" **| Dé réussi, vous avez fait: " + calcul + " en REUSSITE CRITIQUE!");
 	} else
 	if (calcul < stat && stat != 1 && stat != calcul) {
-		test = JSON.stringify(statname+": 🎲✅ - Dé réussi, vous avez fait: " + calcul);
+		test = JSON.stringify("<a:dice2:1177970651072561213> ✅ **"+statname+" **| Dé réussi, vous avez fait: " + calcul);
 	} else {
-		test = JSON.stringify(statname+":🎲❌ - Dé loupé, vous avez fait: " + calcul);
+		test = JSON.stringify("<a:dice2:1177970651072561213> ❌ **"+statname+" **| Dé loupé, vous avez fait: " + calcul);
 	}
 	if(statname == "D6"){
 		var calcul = Math.floor(Math.random() * 6 + 1);
-		test = JSON.stringify(statname+":🎲 - Vous avez fait: " + calcul);
+		test = JSON.stringify("<a:dice2:1177970651072561213> **"+statname+" **| Vous avez fait: " + calcul);
 	}
 	if(statname == "D20"){
 		var calcul = Math.floor(Math.random() * 20 + 1);
-		test = JSON.stringify(statname+":🎲 - Vous avez fait: " + calcul);
+		test = JSON.stringify("<a:dice2:1177970651072561213> **"+statname+" **| Vous avez fait: " + calcul);
 	}
 	var unquoted = test.replace(/"/g, '');
 	var image=$("#imgUrl").val();
