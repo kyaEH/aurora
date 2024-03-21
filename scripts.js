@@ -100,7 +100,7 @@ function exportData() {
 		return;
 	}
 	var json_arr = {};
-	var statnames= ["charname","race", "faction","taille","poids","age","force","constitution","agilite","intelligence","concentration","dexterite","experience","PA","PO","inv1","inv1qte","inv2","inv2qte","inv3","inv3qte","inv4","inv4qte","inv5","inv5qte","inv6","inv6qte","inv7","inv7qte","arme1","arme1n","arme2","arme2n","armure","armuren","amulette","amuletten","bottes","bottesn","charme","charmen","comp1","comp1n","comp2","comp2n","comp3","comp3n","comp4","comp4n","comp5","comp5n","comp6n","comp6","talent1","talent2","talent3","talent4","talent5","talent6","blessure","fatigue","imgUrl","notes","equip1","equip2","equip3","equip4","equip5","equip6","pv","manaa"];
+	var statnames= ["charname","race", "faction","taille","poids","age","force","constitution","agilite","intelligence","concentration","dexterite","experience","PA","PO","inv1","inv1qte","inv2","inv2qte","inv3","inv3qte","inv4","inv4qte","inv5","inv5qte","inv6","inv6qte","inv7","inv7qte","arme1","arme1n","arme2","arme2n","armure","armuren","amulette","amuletten","bottes","bottesn","charme","charmen","comp1","comp1n","comp2","comp2n","comp3","comp3n","comp4","comp4n","comp5","comp5n","comp6n","comp6","talent1","talent2","talent3","talent4","talent5","talent6","blessure","fatigue","imgUrl","notes","equip1","equip2","equip3","equip4","equip5","equip6","equip7","pv","manaa"];
 	statnames.forEach(element => json_arr[element] = $("#"+element+"").val());
 	json_arr["izanagi"] = $("#izanagi").is(":checked");
 	
