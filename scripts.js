@@ -24,7 +24,7 @@ $("input").change(function() {
 	// parade = constitution/2.5 + armure
 	$("#parade").val(Math.round($("#constitution").val() / 2.5+$("#armure").val()*1));
 	// esquive = agilité + age + taille + poids
-	$("#esquive").val(Math.min(75, Math.round(Number($("#agilite").val()) + 90 - (Number($("#age").val()) / 2 + Number($("#taille").val()) / 10 + Number($("#poids").val()) / 5))));
+	$("#esquive").val(Math.max(10,Math.min(75, Math.round(Number($("#agilite").val()) + 90 - (Number($("#age").val()) / 2 + Number($("#taille").val()) / 10 + Number($("#poids").val()) / 5)))));
 	
     // --- Social ---
 
@@ -75,7 +75,7 @@ function sendMessage(stat, statname) {
 	}
 	if(statname == "D6"){
 		var calcul = Math.floor(Math.random() * 6 + 1);
-		test = JSON.stringify("<a:dice:1178056865750450396>	 **"+statname+" **| Vous avez fait: " + calcul);
+		test = JSON.stringify("<a:dice:1178056865750450396> **"+statname+" **| Vous avez fait: " + calcul);
 	}
 	if(statname == "D20"){
 		var calcul = Math.floor(Math.random() * 20 + 1);
