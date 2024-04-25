@@ -17,4 +17,3 @@ document.getElementById("playerImg").addEventListener("error", function(event) {
     event.target.src = "./helmet.png";
     event.onerror = null;
 })
-
