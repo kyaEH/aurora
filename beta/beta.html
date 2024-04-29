@@ -3,67 +3,9 @@
         <link href="css/main.css" rel="stylesheet" /> 
     </head>
     <body>
-        <h1 class="title">Le faisceau d'Aurora</h1>
-        <div class="parent" background>
-            <div class="div1">
-                <img id="playerImg" src="helmet.png"/>
-            </div>
-            
-        
-        <div class="div2">
-            player name <br>
-            player image
-            <input type="text" id="playerUrl"/>
-        </div>
-        <div class="div4">Navigation menu<br>
-            <button id="statPage" onclick="swap('statMenu')">stats</button>
-            <button id="dicePage" onclick="swap('diceMenu')">dés</button>
-        </div>
-        <div class="div5">
-            <div id="statMenu" class="stats">
-                <div class="leftstat">
-                    
-                    <input type="text">stat<br>
-                    stat
-                    <input type="text"><br>
-                    stat
-                    <input type="text"><br>
-                    stat
-                    <input type="text"><br>
-                    stat
-                    <input type="text"><br>
-                    stat
-                    <input type="text"><br>
-                    stat
-                    <input type="text"><br>
-                    stat
-                    <input type="text"><br>
-                </div>
-                <div class="rightstat">
-                    <h2>Précision</h2> <span>modificateur</span>
-                    <input type="text" value="+0"> <span>Valeur</span> <input type="text" value="0"><button>🎲</button><br>
-                    Dégâts Physique | <span>modificateur</span>
-                    <input type="text" value="+0"> <span>Valeur</span> <input type="text" value="0"><br>
-                    Magie | <span>modificateur</span>
-                    <input type="text" value="+0"> <span>Valeur</span> <input type="text" value="0"><br>
-                    Critique | <span>modificateur</span>
-                    <input type="text" value="+0"> <span>Valeur</span> <input type="text" value="0"><br>
-                    Buff/Debuff | <span>modificateur</span>
-                    <input type="text" value="+0"> <span>Valeur</span> <input type="text" value="0"><button>🎲</button><br>
-                    Précision | <span>modificateur</span>
-                    <input type="text" value="+0"> <span>Valeur</span> <input type="text" value="0"><button>🎲</button><br>
-                    stat
-                    <input type="text"><br>
-                    stat
-                    <input type="text"><br>
-                </div>
-            </div>
-            <div id="diceMenu" style="display:none">
-                Toto
-            </div>
-    </div>
-        
-    </div>
+        <a id="downloadAnchorElem" style="display:none"></a>
+     <input type="file" id="filesImp" value="Importer la fiche" placeholder="Importer la fiche" onchange='openFile(event)'/>
+    <pre id="datas"></pre>
     <script src="js/main.js"></script>
     </body>
 </html>

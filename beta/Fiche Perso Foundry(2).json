@@ -1,0 +1,369 @@
+{
+    "folder": "K8Mqi4s9c1E207gl",
+    "name": "Nahj",
+    "type": "character",
+    "img": "icons/svg/mystery-man.svg",
+    "system": {
+      "health": {
+        "value": "19",
+        "min": 0,
+        "max": 17
+      },
+      "power": {
+        "min": 0,
+        "max": 4
+      },
+      "biography": "<p>Carnet \"Guilde des Mercenaires\"<br>-4 tampons\n\n2ème carnet \"Guilde des Mercenaires\" (vierge)\n-2 tampons\n\n</p>",
+      "race": "Humain",
+      "faction": "Daspath",
+      "attributes": {
+        "level": {
+          "value": 0
+        },
+        "experience": {
+          "value": 1110
+        },
+        "taille": {
+          "value": 175
+        },
+        "poids": {
+          "value": 72
+        },
+        "age": {
+          "value": 23
+        },
+        "fatigue": {
+          "value": "-1"
+        },
+        "blessure": {
+          "value": "0"
+        },
+        "talent": {
+          "value": "     "
+        }
+      },
+      "abilities": {
+        "str": {
+          "value": 7
+        },
+        "con": {
+          "value": 3
+        },
+        "cha": {
+          "value": 6
+        },
+        "int": {
+          "value": 4
+        },
+        "wis": {
+          "value": 4
+        },
+        "dex": {
+          "value": 5
+        }
+      },
+      "equipement": {
+        "Arme_principale": {
+          "effet": "Dague - Ornée d'une pierre ovale jaune",
+          "stat": "Dégâts",
+          "portee": "0"
+        },
+        "Arme_secondaire": {
+          "effet": "Dague - ",
+          "stat": "Dégâts",
+          "portee": "0"
+        },
+        "Armure": {
+          "effet": "Armure en fer - ",
+          "value": "4",
+          "stat": "Parade"
+        },
+        "Amulette": {
+          "effet": " - ",
+          "value": "",
+          "stat": "Magie"
+        },
+        "Chaussure": {
+          "effet": "Bottes en cuir - ",
+          "stat": "Rapidité"
+        },
+        "Charme": {
+          "effet": " - ",
+          "value": "",
+          "stat": "Charisme"
+        },
+        "Lunettes": {
+          "effet": "",
+          "value": "0",
+          "stat": "Précision"
+        }
+      },
+      "attribute": {
+        "attribute": {
+          "value": "Talent"
+        }
+      }
+    },
+    "prototypeToken": {
+      "name": "Test",
+      "displayName": 0,
+      "actorLink": false,
+      "appendNumber": false,
+      "prependAdjective": false,
+      "texture": {
+        "src": "icons/svg/mystery-man.svg",
+        "scaleX": 1,
+        "scaleY": 1,
+        "offsetX": 0,
+        "offsetY": 0,
+        "rotation": 0,
+        "tint": null
+      },
+      "width": 1,
+      "height": 1,
+      "lockRotation": false,
+      "rotation": 0,
+      "alpha": 1,
+      "disposition": -1,
+      "displayBars": 30,
+      "bar1": {
+        "attribute": "health"
+      },
+      "bar2": {
+        "attribute": "power"
+      },
+      "light": {
+        "alpha": 0.5,
+        "angle": 360,
+        "bright": 0,
+        "coloration": 1,
+        "dim": 0,
+        "attenuation": 0.5,
+        "luminosity": 0.5,
+        "saturation": 0,
+        "contrast": 0,
+        "shadows": 0,
+        "animation": {
+          "type": null,
+          "speed": 5,
+          "intensity": 5,
+          "reverse": false
+        },
+        "darkness": {
+          "min": 0,
+          "max": 1
+        },
+        "color": null
+      },
+      "sight": {
+        "enabled": true,
+        "range": 20,
+        "angle": 360,
+        "visionMode": "basic",
+        "color": null,
+        "attenuation": 0.1,
+        "brightness": 0,
+        "saturation": 0,
+        "contrast": 0
+      },
+      "detectionModes": [],
+      "flags": {},
+      "randomImg": false
+    },
+    "items": [
+      {
+        "name": "Corne de loup corrompu/Cristal  bleu transparent",
+        "type": "item",
+        "system": {
+          "description": "<p>Corne de loup corrompu/Cristal  bleu transparent</p>",
+          "quantity": "2",
+          "weight": 0,
+          "formula": "d20 + @str.mod + ceil(@lvl / 2)",
+          "roll": {
+            "diceNum": null,
+            "diceSize": "",
+            "diceBonus": ""
+          }
+        },
+        "_id": "",
+        "img": "icons/svg/item-bag.svg",
+        "effects": [],
+        "folder": null,
+        "sort": 0,
+        "ownership": {
+          "default": 0,
+          "GhducMww9vcrivsX": 3
+        },
+        "flags": {},
+        "_stats": {
+          "systemId": "fage",
+          "systemVersion": "2.0.0",
+          "coreVersion": "11.315",
+          "createdTime": 1714395685975,
+          "modifiedTime": 1714395706897,
+          "lastModifiedBy": "GhducMww9vcrivsX"
+        }
+      },
+      {
+        "name": "Clé cassé/Clé",
+        "type": "item",
+        "system": {
+          "description": "<p>Clé cassé/Clé</p>",
+          "quantity": "2",
+          "weight": 0,
+          "formula": "d20 + @str.mod + ceil(@lvl / 2)",
+          "roll": {
+            "diceNum": null,
+            "diceSize": "",
+            "diceBonus": ""
+          }
+        },
+        "_id": "",
+        "img": "icons/svg/item-bag.svg",
+        "effects": [],
+        "folder": null,
+        "sort": 0,
+        "ownership": {
+          "default": 0,
+          "GhducMww9vcrivsX": 3
+        },
+        "flags": {},
+        "_stats": {
+          "systemId": "fage",
+          "systemVersion": "2.0.0",
+          "coreVersion": "11.315",
+          "createdTime": 1714395685975,
+          "modifiedTime": 1714395706897,
+          "lastModifiedBy": "GhducMww9vcrivsX"
+        }
+      },
+      {
+        "name": "Dague orné pierre noire - 1.5X dégats corrompu/Épée de garde",
+        "type": "item",
+        "system": {
+          "description": "<p>Dague orné pierre noire - 1.5X dégats corrompu/Épée de garde</p>",
+          "quantity": "3",
+          "weight": 0,
+          "formula": "d20 + @str.mod + ceil(@lvl / 2)",
+          "roll": {
+            "diceNum": null,
+            "diceSize": "",
+            "diceBonus": ""
+          }
+        },
+        "_id": "",
+        "img": "icons/svg/item-bag.svg",
+        "effects": [],
+        "folder": null,
+        "sort": 0,
+        "ownership": {
+          "default": 0,
+          "GhducMww9vcrivsX": 3
+        },
+        "flags": {},
+        "_stats": {
+          "systemId": "fage",
+          "systemVersion": "2.0.0",
+          "coreVersion": "11.315",
+          "createdTime": 1714395685975,
+          "modifiedTime": 1714395706897,
+          "lastModifiedBy": "GhducMww9vcrivsX"
+        }
+      },
+      {
+        "name": "Attaque vicieuse / 3",
+        "type": "spell",
+        "system": {
+          "description": "<p>Permets au lanceur d'attaquer deux fois dans le même tour.\nDouble la statistique \"Critique\" dans ce tour.</p>",
+          "spellLevel": 1
+        },
+        "_id": "",
+        "img": "icons/svg/item-bag.svg",
+        "effects": [],
+        "folder": null,
+        "sort": 0,
+        "ownership": {
+          "default": 0,
+          "GhducMww9vcrivsX": 3
+        },
+        "flags": {},
+        "_stats": {
+          "systemId": "fage",
+          "systemVersion": "2.0.0",
+          "coreVersion": "11.315",
+          "createdTime": 1714395663469,
+          "modifiedTime": 1714395676163,
+          "lastModifiedBy": "GhducMww9vcrivsX"
+        }
+      },
+      {
+        "name": "Réflexes-éclairs\n / 2",
+        "type": "spell",
+        "system": {
+          "description": "<p>Permets au lanceur d'esquiver les deux prochaines attaques adversaires (physiques ou magiques).</p>",
+          "spellLevel": 1
+        },
+        "_id": "",
+        "img": "icons/svg/item-bag.svg",
+        "effects": [],
+        "folder": null,
+        "sort": 0,
+        "ownership": {
+          "default": 0,
+          "GhducMww9vcrivsX": 3
+        },
+        "flags": {},
+        "_stats": {
+          "systemId": "fage",
+          "systemVersion": "2.0.0",
+          "coreVersion": "11.315",
+          "createdTime": 1714395663469,
+          "modifiedTime": 1714395676163,
+          "lastModifiedBy": "GhducMww9vcrivsX"
+        }
+      },
+      {
+        "name": "Marque du bourreau / Passif ",
+        "type": "spell",
+        "system": {
+          "description": "<p>Tout les deux coups, marque l'adversaire. Au bout de deux marques, inflige [Magie] dégâts supplémentaire et soigne [Magie]. Si PV à fond, regagne [Magie] en mana.</p>",
+          "spellLevel": 1
+        },
+        "_id": "",
+        "img": "icons/svg/item-bag.svg",
+        "effects": [],
+        "folder": null,
+        "sort": 0,
+        "ownership": {
+          "default": 0,
+          "GhducMww9vcrivsX": 3
+        },
+        "flags": {},
+        "_stats": {
+          "systemId": "fage",
+          "systemVersion": "2.0.0",
+          "coreVersion": "11.315",
+          "createdTime": 1714395663469,
+          "modifiedTime": 1714395676163,
+          "lastModifiedBy": "GhducMww9vcrivsX"
+        }
+      }
+    ],
+    "effects": [],
+    "flags": {
+      "exportSource": {
+        "world": "le-faisceau-daurora",
+        "system": "fage",
+        "coreVersion": "11.315",
+        "systemVersion": "2.0.0"
+      }
+    },
+    "_stats": {
+      "systemId": "fage",
+      "systemVersion": "2.0.0",
+      "coreVersion": "11.315",
+      "createdTime": 1714395652602,
+      "modifiedTime": 1714395730179,
+      "lastModifiedBy": "GhducMww9vcrivsX"
+    }
+  }

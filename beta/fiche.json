@@ -1,0 +1,283 @@
+{
+  "folder": "K8Mqi4s9c1E207gl",
+  "name": "Test",
+  "type": "character",
+  "img": "icons/svg/mystery-man.svg",
+  "system": {
+    "health": {
+      "value": 17,
+      "min": 0,
+      "max": 17
+    },
+    "power": {
+      "value": 4,
+      "min": 0,
+      "max": 4
+    },
+    "biography": "<p>Notes</p>",
+    "race" : "Humain",
+    "faction":"Déjuce",
+    "attributes": {
+      "level": {
+        "value": 0
+      },
+      "experience": {
+        "value": 500
+      },
+      "taille": {
+        "value": 170
+      },
+      "poids": {
+        "value": 60
+      },
+      "age": {
+        "value": 25
+      },
+      "fatigue": {
+        "value": 0
+      },
+      "blessure": {
+        "value": 0
+      },
+      "talent": {
+        "value": ""
+      }
+    },
+    "abilities": {
+      "str": {
+        "value": 1
+      },
+      "con": {
+        "value": 1
+      },
+      "cha": {
+        "value": 1
+      },
+      "int": {
+        "value": 1
+      },
+      "wis": {
+        "value": 1
+      },
+      "dex": {
+        "value": 1
+      }
+    },
+    "equipement": {
+      "Arme_principale": {
+        "effet": "Arme 1",
+        "value": "5",
+        "stat": "Dégâts",
+        "portee": "0"
+      },
+      "Arme_secondaire": {
+        "effet": "",
+        "value": "0",
+        "stat": "Dégâts",
+        "portee": "0"
+      },
+      "Armure": {
+        "effet": "",
+        "value": "0",
+        "stat": "Parade"
+      },
+      "Amulette": {
+        "effet": "",
+        "value": "0",
+        "stat": "Magie"
+      },
+      "Chaussure": {
+        "effet": "",
+        "value": "0",
+        "stat": "Rapidité"
+      },
+      "Charme": {
+        "effet": "",
+        "value": "0",
+        "stat": "Charisme"
+      },
+      "Lunettes": {
+        "effet": "",
+        "value": "0",
+        "stat": "Précision"
+      }
+    },
+    "attribute": {
+      "attribute": {
+        "value": "Talent"
+      }
+    }
+  },
+  "prototypeToken": {
+    "name": "Test",
+    "displayName": 0,
+    "actorLink": false,
+    "appendNumber": false,
+    "prependAdjective": false,
+    "texture": {
+      "src": "icons/svg/mystery-man.svg",
+      "scaleX": 1,
+      "scaleY": 1,
+      "offsetX": 0,
+      "offsetY": 0,
+      "rotation": 0,
+      "tint": null
+    },
+    "width": 1,
+    "height": 1,
+    "lockRotation": false,
+    "rotation": 0,
+    "alpha": 1,
+    "disposition": -1,
+    "displayBars": 30,
+    "bar1": {
+      "attribute": "health"
+    },
+    "bar2": {
+      "attribute": "power"
+    },
+    "light": {
+      "alpha": 0.5,
+      "angle": 360,
+      "bright": 0,
+      "coloration": 1,
+      "dim": 0,
+      "attenuation": 0.5,
+      "luminosity": 0.5,
+      "saturation": 0,
+      "contrast": 0,
+      "shadows": 0,
+      "animation": {
+        "type": null,
+        "speed": 5,
+        "intensity": 5,
+        "reverse": false
+      },
+      "darkness": {
+        "min": 0,
+        "max": 1
+      },
+      "color": null
+    },
+    "sight": {
+      "enabled": true,
+      "range": 20,
+      "angle": 360,
+      "visionMode": "basic",
+      "color": null,
+      "attenuation": 0.1,
+      "brightness": 0,
+      "saturation": 0,
+      "contrast": 0
+    },
+    "detectionModes": [],
+    "flags": {},
+    "randomImg": false
+  },
+  "items": [
+    {
+      "name": "Compétence 1",
+      "type": "spell",
+      "system": {
+        "description": "<p>Effet comp&eacute;tence</p>",
+        "spellLevel": 1
+      },
+      "_id": "knwAesHufnlJnYFp",
+      "img": "icons/svg/item-bag.svg",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GhducMww9vcrivsX": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "fage",
+        "systemVersion": "2.0.0",
+        "coreVersion": "11.315",
+        "createdTime": 1714395663469,
+        "modifiedTime": 1714395676163,
+        "lastModifiedBy": "GhducMww9vcrivsX"
+      }
+    },
+    {
+      "name": "Inventaire 1",
+      "type": "item",
+      "system": {
+        "description": "<p>Inventaire 1</p>",
+        "quantity": 3,
+        "weight": 0,
+        "formula": "d20 + @str.mod + ceil(@lvl / 2)",
+        "roll": {
+          "diceNum": null,
+          "diceSize": "",
+          "diceBonus": ""
+        }
+      },
+      "_id": "Z4u7A4inxa0Xzbhv",
+      "img": "icons/svg/item-bag.svg",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GhducMww9vcrivsX": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "fage",
+        "systemVersion": "2.0.0",
+        "coreVersion": "11.315",
+        "createdTime": 1714395685975,
+        "modifiedTime": 1714395706897,
+        "lastModifiedBy": "GhducMww9vcrivsX"
+      }
+    },
+    {
+      "name": "New Item",
+      "type": "item",
+      "system": {
+        "description": "",
+        "quantity": 1,
+        "weight": 0,
+        "formula": "d20 + @str.mod + ceil(@lvl / 2)"
+      },
+      "_id": "poDGxilxeokSUdJE",
+      "img": "icons/svg/item-bag.svg",
+      "effects": [],
+      "folder": null,
+      "sort": 0,
+      "ownership": {
+        "default": 0,
+        "GhducMww9vcrivsX": 3
+      },
+      "flags": {},
+      "_stats": {
+        "systemId": "fage",
+        "systemVersion": "2.0.0",
+        "coreVersion": "11.315",
+        "createdTime": 1714395687351,
+        "modifiedTime": 1714395687351,
+        "lastModifiedBy": "GhducMww9vcrivsX"
+      }
+    }
+  ],
+  "effects": [],
+  "flags": {
+    "exportSource": {
+      "world": "le-faisceau-daurora",
+      "system": "fage",
+      "coreVersion": "11.315",
+      "systemVersion": "2.0.0"
+    }
+  },
+  "_stats": {
+    "systemId": "fage",
+    "systemVersion": "2.0.0",
+    "coreVersion": "11.315",
+    "createdTime": 1714395652602,
+    "modifiedTime": 1714395730179,
+    "lastModifiedBy": "GhducMww9vcrivsX"
+  }
+}
