@@ -119,11 +119,7 @@ var openFile = function(event) {
 				  "stat": "Précision"
 				}
 			  },
-			  "attribute": {
-				"attribute": {
-				  "value": data.talent1+" "+data.talent2+" "+data.talent3+" "+data.talent4 +" "+data.talent5+" "+data.talent6
-				}
-			  }
+			  
 			},
 			"prototypeToken": {
 			  "name": "Test",
