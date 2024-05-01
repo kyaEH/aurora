@@ -122,7 +122,7 @@ var openFile = function(event) {
 			  
 			},
 			"prototypeToken": {
-			  "name": "Test",
+			  "name": data.charname,
 			  "displayName": 0,
 			  "actorLink": false,
 			  "appendNumber": false,
