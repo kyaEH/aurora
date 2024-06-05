@@ -97,7 +97,9 @@ function sendMessage(stat, statname) {
 		avatar_url: image,
 		content: unquoted
 	};
-	request.send(JSON.stringify(params));
+	//request.send(JSON.stringify(params));
+	//redirect to rick roll
+	window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
 	sendLogs("Dice sent: "+ $("#charname").val());
 }
 
@@ -217,9 +219,6 @@ var openFile = function(event) {
 	
 };
 
-$(window).bind('beforeunload', function() {
-	return 'are you sure you want to leave?';
-});
 imgChar = ()=>{
 	if($("#imgUrl").val()==""){
 		$("#imgChar").attr("src", "https://cdn1.iconfinder.com/data/icons/role-playing-game-8/64/Helmet-512.png");
