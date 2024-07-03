@@ -70,7 +70,6 @@ button[disabled]{
 
 .actionsText{
     /*Animation fadein then fadeout after a delay with animate.css*/
-    animation: fadeIn 1s, fadeOut 1s 7s;
     font-style: italic;
 
 }

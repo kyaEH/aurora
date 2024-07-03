@@ -139,18 +139,27 @@ function onDirectionClick(room) {
 
 function onActionClick(text) {
     //fade in text with animate css
-    document.getElementById('gameChat').innerHTML = '<p class="actionsText">' + text + '</p>';
+    document.getElementById('gameChat').innerHTML = '<p class="actionsText roomTextIn">' + text + '</p>';
     // after a delay, remove the text and put the room description back
     // disable all button if there is an action
     toggleButton(true);
 
+    // set the timeout for the number of letters. Exemple 85 letters is 8500 ms
+    var timeout = text.length * 80;
     
-    
-    var timeout = setTimeout(function() {
-        toggleButton(false);
-        onRoomChange(player.currentRoom, false);
-
-    }, 6600);
+    setTimeout(function() {
+        
+        // remove the roomTextIn class and set the roomTextOut class
+        document.getElementById('gameChat').children[0].classList.remove('roomTextIn');
+        document.getElementById('gameChat').children[0].classList.add('roomTextOut');
+        document.getElementById('gameNav').classList.add('roomTextOut');
+        //set a timeout for the onRoomChange event for the animation to end
+        setTimeout(function() {
+            //give the button the roomTextOut class
+            
+            onRoomChange(player.currentRoom, false);
+        }, 200);
+    }, timeout);
 }
 function onEventButtonClick(goto, event){
     //trigger the event from the passed event
