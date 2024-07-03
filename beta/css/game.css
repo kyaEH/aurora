@@ -1,4 +1,7 @@
 /*This is the main game CSS. There is the bottom where the things are described, or the characters talks*/
+body {
+    background-color: black;
+}
 .game{
     display: flex;
     margin-top: 0;
@@ -89,18 +92,27 @@ button[disabled]{
     animation: fadeOut 1s;
 }
 
-/*CharacterPortrait is on top in the middle of the game canvas, which is only the portrait of a character*/
+/*CharacterPortrait is on the middle of the page, above other elements*/
 .characterPortrait{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: absolute; 
+    left: 0; 
+    right: 0; 
+    top:0;
+    bottom:25px;
+    margin-left: auto; 
+    margin-right: auto; 
+    margin-top: auto;
+    margin-bottom:auto;
+    width: 40vh; /* Need a specific value to work */
+    max-height: 45vh; /* Need a specific value to work */
+}
 
-    color: #fff;
-    font-family: 'Press Start 2P', cursive;
-    text-align: center;
-    display: block;
-    position: absolute;
+.characterPortrait img{
+    width:100%;
+    height:100%;
+}
 
-    left: 40%;
-    top: 10%;
+.blur {
+    /*Blur and small black and white or brighness*/
+    filter: blur(5px) grayscale(25%);
 }

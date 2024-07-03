@@ -24,13 +24,16 @@ var player = {
 // Make a onroomchange event
 
 function onRoomChange(room, animateImage = true) {
+    // if there is a blur class in the gameImage, remove it
+    if(document.getElementById('gameImage').classList.contains('blur')){
+        document.getElementById('gameImage').classList.remove('blur');
+    }
     console.log('Room changed to ' + room);
     // Update the player object
     player.currentRoom = room;
     //Update the div with id gameChat with the room description mapData.maps[room - 1].description;
     // Update after 1 second until the text is gone
     // change rommTextIn by roomTextOut
-    console.log();
 
     //if the gameImage has the class roomImgIn, remove it and add roomImgOut
     if(animateImage){
@@ -66,9 +69,17 @@ function onRoomChange(room, animateImage = true) {
         for (var key in mapData.maps[room - 1].actions) {
             if (mapData.maps[room - 1].actions.hasOwnProperty(key)) {
                 var action = mapData.maps[room - 1].actions[key];
+                // if the action has a requiredIdDone, check if the event id from eventsData get the attribute eventDone is true
+                if (action.requiredIdDone != undefined) {
+                    var event = eventsData.events.find(event => event.id === action.requiredIdDone);
+                    if (!event.eventDone) {
+                        continue;
+
+                    }
+                }
                 if (action.triggerEvent) {
                     // add a button that will trigger the event
-                    document.getElementById('gameNav').innerHTML += '<button class="gameButton actions" onclick="onEventTrigger(' + action.eventID + ')">' + key + '</button>';
+                    document.getElementById('gameNav').innerHTML += '<button class="gameButton actions" onclick="triggerEvent(' + action.eventID + ')">' + key + '</button>';
                 } else {
                     // add a button that will just display the text
                     document.getElementById('gameNav').innerHTML += '<button class="gameButton actions" onclick="onActionClick(\'' + action.Text + '\')">' + key + '</button>';
@@ -84,8 +95,7 @@ function onRoomChange(room, animateImage = true) {
         document.getElementById('gameImage').classList.add('roomImgIn');
         }
         toggleButton(false);
-        // onload, check if the room has a key called onLoadTriggerEvent, then trigger the event id
-        console.log(mapData.maps[room - 1].onMapLoadEvent);
+        // onload, check if the room has a key called onLoadTriggerEvent, then trigger the event idd
         if(mapData.maps[room - 1].onMapLoadEvent !=undefined){
             toggleButton(true);
             setTimeout(function() {
@@ -150,10 +160,13 @@ function triggerEvent(eventID) {
         console.log("Character");
         // id="characterPortrait" is actually display none, so we need to remove it
         //document.getElementById('characterPortrait').style.display="block";
+        //
         characterID = event.characterID;
         console.log(charactersData[characterID]);
         document.getElementById('characterPortrait').src = '../img/characters/' + charactersData[characterID].image;
         document.getElementById('characterPortrait').style.display="block";
+        //add a filter to the background
+        document.getElementById('gameImage').classList.add('blur');
     }
         // display text with id 1 with buttons in gameChat for the text and the buttons in gameNav
         // event.texts is an array of objects with id including Text and Buttons array objects
@@ -175,8 +188,11 @@ function triggerEvent(eventID) {
                 //get event from Buttons.endEvent
                 var endEvent = eventsData.events.find(event => event.id === buttons[i].endEvent);
                 console.log(endEvent);
-                endEvent.eventDone = true;
-                endEvent.eventDefDone = true;
+                // If edvEvent exists, set eventDone to true
+                if(endEvent != undefined){
+                    endEvent.eventDone = true;
+                    endEvent.eventDefDone = true;
+                }
                 buttonsHtml += '<button class="gameButton" onclick="onRoomChange(' + player.currentRoom +', false);">' + buttons[i].Text + '</button>';
 
             }

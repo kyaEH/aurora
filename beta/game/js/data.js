@@ -87,7 +87,7 @@ var mapData = {
                     "eventID": 99
                 },
                 "Play the piano as written in the sheet": {
-                    "requiredIdDone": 1,
+                    "requiredIdDone": 2,
                     "Text": "You play the piano as written in the sheet. The piano opens, and you find a key inside.",
                     "triggerEvent": true,
                     "eventID": 99
@@ -99,26 +99,33 @@ var mapData = {
         {
             "id" : 3,
             "name" : "Downstairs",
-            "description" : "You are downstairs. There is a living room to the East, and a door to the outside to the South.",
-            "image" : "downstairs.webp",
+            "description" : "You are downstairs. You are at the entrance of the house. There is a door to the living room, and a door to go outside. You can also take a look at the balcony",
+            "image" : "entrance.webp",
             "directions" : {
-                "east": {
-                    "to": 6,
+                "Living room": {
+                    "to": 5,
                     "locked": false,
                     "hidden": false,
                     "unlockEvent": 99
                 },
-                "south": {
+                "Outside": {
                     "to": 7,
                     "locked": true,
                     "hidden": false,
                     "unlockEvent": 99
                 },
-                "upstairs": {
+                "Upstairs": {
                     "to": 2,
                     "locked": false,
                     "hidden": false,
                     "unlockEvent": 99
+                }
+            },
+            "actions": {
+                "Check the balcony": {
+                    "Text": "You check the balcony. You are in a huge city, with a beautiful clock tower. You feel the wind on your face, and feel happy.",
+                    "triggerEvent": false,
+                    "eventID": 99
                 }
             }
         },
@@ -126,16 +133,48 @@ var mapData = {
         {
             "id" : 4,
             "name" : "Bathroom",
-            "description" : "You are in the bathroom. There is a bath, a sink, and a toilet.",
+            "description" : "You are in the bathroom. There is a bath, a sink, a mirror, and a toilet.",
             "image" : "bathroom.webp",
             "directions" : {
-                "south": {
+                "Corridor": {
                     "to": 2,
                     "locked": false,
                     "unlockEvent": 99
                 }
             },
+            "actions": {
+                //mirror is look at yourself, which will trigger an event, the sink where you can clean your hands, and the bath where you can find a rubber duck.
+                "Look at yourself in the mirror": {
+                    "Text": "You look at yourself in the mirror. You look good today.",
+                    "triggerEvent": true,
+                    "eventID": 3
+                },
+                "Clean your hands": {
+                    "Text": "You clean your hands. You feel refreshed.",
+                    "triggerEvent": false,
+                    "eventID": 99
+                },
+                "Check the bath": {
+                    "Text": "You check the bath. You find a rubber duck.",
+                    "triggerEvent": false,
+                    "eventID": 99
+                }
+            },
             "items" : [1]
+        },
+        // Room 5 is the living room. Just mark that it's TBD with a go back to corridor
+        {
+            "id": 5,
+            "name": "Living room",
+            "description": "TBD",
+            "image": "tbd.webp",
+            "directions": {
+                "Corridor": {
+                    "to": 3,
+                    "locked": false,
+                    "unlockEvent": 99
+                }
+            }
         }
         //close the json, will be edited later
     ]
@@ -198,8 +237,52 @@ var eventsData = {
         "doneText": "Test done",
         "eventDone": false,
         "eventDefDone": false
+    },
+    // event 3 is looking at the mirror, wich trigger isCharacterTalk and find an image of yourself "Ohni" with id 2
+    {
+        "id": 3,
+        "isCharacterTalk": true,
+        "characterID" : 2,
+        "text": 
+            {
+                
+                "Text": "$CHAR: <i>'You look good today.'</i>",
+                "Buttons": [
+                    {
+                        "id": 1,
+                        "Text": "Button 1",
+                        "Goto": "4"
+                    }
+                ]
+            },
+        
+        "doneText": "Test done",
+        "eventDone": false,
+        "eventDefDone": false
+    },
+    // event 4 is the end of the mirror event, where you can go back to the bathroom
+    {
+        "id": 4,
+        "isCharacterTalk": false,
+        
+        "text": 
+            {
+                
+                "Text": "You are back in the bathroom.",
+                "Buttons": [
+                    {
+                        "id": 1,
+                        "Text": "Next",
+                        "Goto": "99",
+
+                    }
+                ]
+            },
+        
+        "doneText": "Test done",
+        "eventDone": false,
+        "eventDefDone": false
     }
-    
 
     ]
 }
@@ -216,5 +299,10 @@ var charactersData = {
         "id": 1,
         "name": "Mom",
         "image": "dimary.jpg"   
+    },
+    2:{
+        "id": 2,
+        "name": "Ohni",
+        "image": "ohni.jpg"
     }
 }
