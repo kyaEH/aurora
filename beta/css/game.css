@@ -27,9 +27,10 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 15vh;
+    height: 19vh;
     background-color: #000;
     color: #fff;
+    font-size: large;
     font-family: 'Press Start 2P', cursive;
     text-align: center;
 }
@@ -39,7 +40,7 @@ body {
     justify-content: center; /* Centers the buttons horizontally */
     align-items: center; /* Aligns the buttons vertically */
     gap: 1rem; /* Adds space between the buttons */
-    height: 10vh;
+    height: 4vh;
     background-color: #000;
 }
 
@@ -47,7 +48,7 @@ body {
 .gameButton {
     margin-top: 1rem;
     padding: 0.5rem 1rem;
-    font-size: 1rem;
+    font-size: 1.1rem;
     background-color: #000;
     color: #fff;
     border: 2px solid #fff;

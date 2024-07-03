@@ -206,7 +206,7 @@ var eventsData = {
                 "Buttons": [
                     {
                         "id": 1,
-                        "Text": "Button 1",
+                        "Text": "Next",
                         "Goto": "2"
                     }
                 ]
@@ -246,11 +246,11 @@ var eventsData = {
         "text": 
             {
                 
-                "Text": "$CHAR: <i>'You look good today.'</i>",
+                "Text": "This is you, a yound a strong lady. <i>$CHAR</i> is your name.",
                 "Buttons": [
                     {
                         "id": 1,
-                        "Text": "Button 1",
+                        "Text": "Next",
                         "Goto": "4"
                     }
                 ]

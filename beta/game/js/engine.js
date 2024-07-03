@@ -34,16 +34,28 @@ function onRoomChange(room, animateImage = true) {
     //Update the div with id gameChat with the room description mapData.maps[room - 1].description;
     // Update after 1 second until the text is gone
     // change rommTextIn by roomTextOut
-
+    
     //if the gameImage has the class roomImgIn, remove it and add roomImgOut
     if(animateImage){
         if(document.getElementById('gameImage').classList.contains('roomImgIn'))
         document.getElementById('gameImage').classList.remove('roomImgIn');
         document.getElementById('gameImage').classList.add('roomImgOut');
+        //Room text in to room text out from gameChat children 
+        if(document.getElementById('gameChat').children[0].classList.contains('roomTextIn')){
+            document.getElementById('gameChat').children[0].classList.remove('roomTextIn');
+            document.getElementById('gameChat').children[0].classList.add('roomTextOut');
+        }
     }
     toggleButton(true);
+    // give the class fade out to the game nav buttons
+    document.getElementById('gameNav').classList.add('roomTextOut');
+    // remove the room text in class
+    document.getElementById('gameNav').classList.remove('roomTextIn');
+
     setTimeout(function() {
         document.getElementById('gameChat').innerHTML = "<p class='roomTextIn'>" + mapData.maps[room - 1].description + "</p>";
+        document.getElementById('gameNav').classList.add('roomTextIn');
+        document.getElementById('gameNav').classList.remove('roomTextOut');
         // Update the gameChat with buttons for the directions
         document.getElementById('gameNav').innerHTML = "";
         var directions = mapData.maps[room - 1].directions;
@@ -164,9 +176,13 @@ function triggerEvent(eventID) {
         characterID = event.characterID;
         console.log(charactersData[characterID]);
         document.getElementById('characterPortrait').src = '../img/characters/' + charactersData[characterID].image;
-        document.getElementById('characterPortrait').style.display="block";
+        //Once the image is loaded, add the blur class to the gameImage
+        document.getElementById('characterPortrait').onload = function(){
+            document.getElementById('gameImage').classList.add('blur');
+            document.getElementById('characterPortrait').style.display="block";
+        }
         //add a filter to the background
-        document.getElementById('gameImage').classList.add('blur');
+
     }
         // display text with id 1 with buttons in gameChat for the text and the buttons in gameNav
         // event.texts is an array of objects with id including Text and Buttons array objects
