@@ -177,8 +177,11 @@ function triggerEvent(eventID) {
         console.log(charactersData[characterID]);
         document.getElementById('characterPortrait').src = '../img/characters/' + charactersData[characterID].image;
         //Once the image is loaded, add the blur class to the gameImage
+        document.getElementById('characterPortrait').classList.add('roomTextIn');
         document.getElementById('characterPortrait').onload = function(){
             document.getElementById('gameImage').classList.add('blur');
+            //addClass roomtextin
+            
             document.getElementById('characterPortrait').style.display="block";
         }
         //add a filter to the background
