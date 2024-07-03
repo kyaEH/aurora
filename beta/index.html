@@ -3,7 +3,12 @@
 <html>
     <head>
         <script>
-            window.location.replace("/menu/");
+            // if the url starts with kyaeh.github.io then redirect to /beta/menu/
+            if (window.location.href.startsWith('https://kyaeh.github.io')) {
+                window.location.href = '/beta/menu/';
+            }else {
+                window.location.href = '/menu/';
+            }
         </script>
     </head>
     <body>

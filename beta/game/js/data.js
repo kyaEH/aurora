@@ -9,11 +9,11 @@ var mapData = {
         {
             "id" : 1,
             "name" : "Bedroom",
-            "description" : "You are in a bedroom. There is a bed, a desk, and a closet. <br> There is a door to the East.",
+            "description" : "This is your bedroom. There is a bed, a desk, and a closet. <br> You can also leave your bedrooom.",
             "image" : "bedroom.webp",
             
             "directions" : {
-                "Corridor": {
+                "Leave the bedroom": {
                     "to": 2,
                     "locked": false,
                     "hidden": false,
@@ -21,16 +21,18 @@ var mapData = {
                 }
             },
             "actions": {
-                "Lay on bed": {
-                    "Text": "You lay on the bed. It is very comfortable. You wish you could stay here forever.",
+                "Lay on your bed": {
+                    "Text": "You lay on your bed. It is very comfortable. You wish you could stay all day here.",
                     "triggerEvent": false,
                     "eventID": 99
                 },
                 "Check the desk": {
-                    "Text": "You check the desk. You stay here very often. You remember the time you spent here doing your homework, and felt alseep. <br> How nostalgic."
+                    "Text": "",
+                    "triggerEvent": true,
+                    "eventID": 5,
                 },
-                "Open closet": {
-                    "Text": "You open the closet. There is nothing interesting inside. Just some clothes and shoes. You close it again.",
+                "Open the closet": {
+                    "Text": "You open the closet. You remember the time spent hiding in there. Now you're too tall to fit in.",
                     "triggerEvent": false,
                     "eventID": 99
                 },
@@ -99,7 +101,7 @@ var mapData = {
         {
             "id" : 3,
             "name" : "Downstairs",
-            "description" : "You are downstairs. You are at the entrance of the house. There is a door to the living room, and a door to go outside. You can also take a look at the balcony",
+            "description" : "You are downstairs. You are at the entrance of the house. There is a door to the living room, and a door to go outside. <br>You can also take a look at the balcony",
             "image" : "entrance.webp",
             "directions" : {
                 "Living room": {
@@ -155,7 +157,7 @@ var mapData = {
                     "eventID": 99
                 },
                 "Check the bath": {
-                    "Text": "You check the bath. You find a rubber duck.",
+                    "Text": "You check the bath. A warm feeling comes to you. You remember the time you spent playing with your rubber duck.<br> You find your rubber duck and take it with you.",
                     "triggerEvent": false,
                     "eventID": 99,
                     "giveItem": 1,
@@ -205,14 +207,33 @@ itemsData = {
 
 //characters
 var eventsData = {
-    "events": [ {
+    "events": [ 
+        
+        {
+            // event 100 is a default event, that triggers when something is locked, and the player tries to go there.
+            "id": 100,
+            "isCharacterTalk": false,
+            "text": 
+                {
+                    
+                    "Text": "It seems locked. You might find a way to open it.",
+                    "Buttons": [
+                        {
+                            "id": 1,
+                            "Text": "Back",
+                            "Goto": "99"
+                        }
+                    ]
+                },
+        },{
+
         "id": 1,
         "isCharacterTalk": true,
         "characterID" : 1,
         "text": 
             {
                 
-                "Text": "$CHAR screaming your name: <i>'Food is ready! Come down to eat!'</i>",
+                "Text": "$CHAR screaming your name: <i>'Ohni! The food is ready! Come to the <u>Living Room</u>!'</i>",
                 "Buttons": [
                     {
                         "id": 1,
@@ -256,7 +277,7 @@ var eventsData = {
         "text": 
             {
                 
-                "Text": "This is you, a yound a strong lady. <i>$CHAR</i> is your name.",
+                "Text": "This is you, a young and strong lady. <i>$CHAR</i> is your name.",
                 "Buttons": [
                     {
                         "id": 1,
@@ -292,7 +313,58 @@ var eventsData = {
         "doneText": "Test done",
         "eventDone": false,
         "eventDefDone": false
-    }
+    },
+    // events 5 is the diary event, where you can read the diary
+    {
+        "id": 5,
+        "isCharacterTalk": false,
+        
+        "text": 
+            {
+                
+                "Text": "You check your desk. You start to feel nostalgic about the time you spent here during your studies.<br> You find your diary.",
+                "Buttons": [
+                    {
+                        "id": 1,
+                        "Text": "Leave",
+                        "Goto": "99",
+
+                    },
+                    {
+                        "id": 2,
+                        "Text": "Read the diary",
+                        "Goto": "6"
+                    }
+                ]
+            },
+        
+        "doneText": "Test done",
+        "eventDone": false,
+        "eventDefDone": false
+    },
+    // event 6 is reading the diary
+    {
+        "id": 6,
+        "isCharacterTalk": false,
+        
+        "text": 
+            {
+                
+                "Text": "You read the diary. It is full of memories, and you feel happy.",
+                "Buttons": [
+                    {
+                        "id": 1,
+                        "Text": "Next",
+                        "Goto": "99",
+
+                    }
+                ]
+            },
+        
+        "doneText": "Test done",
+        "eventDone": false,
+        "eventDefDone": false
+    },
 
     ]
 }

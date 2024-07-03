@@ -16,8 +16,46 @@ function toggleButton(Bool = true) {
     }
     
 }
-// function that push the item id to the player inventory
-
+function fadeOutAll(gameChat=true, gameNav=true, gameImage=true){
+    // remove the roomTextIn class and add the roomTextOut class
+    console.log("FADE OUT");
+    document.getElementById('gameChat').children[0].classList.remove('roomTextIn');
+    document.getElementById('gameNav').classList.remove('roomTextIn');
+    document.getElementById('gameImage').classList.remove('roomTextIn');
+    if(gameChat) {
+        
+        document.getElementById('gameChat').children[0].classList.add('roomTextOut');
+    }
+    if(gameNav){
+        
+        document.getElementById('gameNav').classList.add('roomTextOut');
+    }
+    if(gameImage){
+        
+        document.getElementById('gameImage').classList.add('roomTextOut');
+    }
+    toggleButton(true);
+}
+function fadeInAll(gameChat=true, gameNav=true, gameImage=true){
+    //remove the roomTextOut class and add the roomTextIn class
+    console.log("FADE IN");
+    document.getElementById('gameChat').children[0].classList.remove('roomTextOut');
+    document.getElementById('gameNav').classList.remove('roomTextOut');
+    document.getElementById('gameImage').classList.remove('roomTextOut');
+    if(gameChat) {
+        
+        document.getElementById('gameChat').children[0].classList.add('roomTextIn');
+    }
+    if(gameNav){
+        
+        document.getElementById('gameNav').classList.add('roomTextIn');
+    }
+    if(gameImage){
+        
+        document.getElementById('gameImage').classList.add('roomTextIn');
+    }
+    toggleButton(false);
+}
 // init player in bedroom
 var player = {
     "currentRoom": 1,
@@ -30,7 +68,7 @@ function disableAction(actionID){
 }
 // Make a onroomchange event
 
-function onRoomChange(room, animateImage = true) {
+function onRoomChange(room, animateImage = true, animateAnything = true) {
     // increment the counter (id counter) by 1
     document.getElementById('counter').innerHTML = parseInt(document.getElementById('counter').innerHTML) + 1;
     //check inventoryData.inventory array for each key, then put each item in the html element with id inventory
@@ -43,8 +81,8 @@ function onRoomChange(room, animateImage = true) {
     }
     document.getElementById('inventory').innerHTML = inventoryHtml;
     // if there is a blur class in the gameImage, remove it
-    if(document.getElementById('gameImage').classList.contains('blur')){
-        document.getElementById('gameImage').classList.remove('blur');
+    if(document.getElementById('gameImage').classList.contains('blur') ){
+        document.getElementById('gameImage').classList.remove('blur');  
     }
     console.log('Room changed to ' + room);
     // Update the player object
@@ -55,20 +93,14 @@ function onRoomChange(room, animateImage = true) {
     
     //if the gameImage has the class roomImgIn, remove it and add roomImgOut
     if(animateImage){
-        if(document.getElementById('gameImage').classList.contains('roomImgIn'))
-        document.getElementById('gameImage').classList.remove('roomImgIn');
-        document.getElementById('gameImage').classList.add('roomImgOut');
-        //Room text in to room text out from gameChat children 
-        if(document.getElementById('gameChat').children[0].classList.contains('roomTextIn')){
-            document.getElementById('gameChat').children[0].classList.remove('roomTextIn');
-            document.getElementById('gameChat').children[0].classList.add('roomTextOut');
-        }
+        fadeOutAll();
     }
+    else{
+        if(animateAnything) fadeOutAll(true,true,true);
+        else fadeOutAll(true,true,false);
+    }
+
     toggleButton(true);
-    // give the class fade out to the game nav buttons
-    document.getElementById('gameNav').classList.add('roomTextOut');
-    // remove the room text in class
-    document.getElementById('gameNav').classList.remove('roomTextIn');
 
     setTimeout(function() {
         document.getElementById('gameChat').innerHTML = "<p class='roomTextIn'>" + mapData.maps[room - 1].description + "</p>";
@@ -84,8 +116,8 @@ function onRoomChange(room, animateImage = true) {
                     continue;
                 }
                 if(directions[key].locked) {
-                    directionsHtml += '<button class="gameButton locked" onclick="onDirectionClick(' + directions[key].to + ')" disabled> 🔒 ' + key + '</button>';
-
+                    // button that trigger the event 100
+                    directionsHtml += '<button class="gameButton" onclick="triggerEvent(100)">' + key + '</button>';
                 }
                 else{
                     directionsHtml += '<button class="gameButton" onclick="onDirectionClick(' + directions[key].to + ')">' + key + '</button>';
@@ -126,15 +158,15 @@ function onRoomChange(room, animateImage = true) {
                     if(action.actionDone!=undefined){
                         //if the action have giveItem attribute, wich is the item ID, create a button that will give the item to the player
                         if(action.giveItem != undefined){
-                            document.getElementById('gameNav').innerHTML += '<button class="gameButton actions" onclick="onActionClick(\'' + action.Text + '\'); inventoryData.inventory.push(' + action.giveItem + '); disableAction(\'' + key + '\')">' + key + '</button>';
+                            document.getElementById('gameNav').innerHTML += '<button class="gameButton actions" onclick="onActionClick(`' + action.Text + '`); inventoryData.inventory.push(' + action.giveItem + '); disableAction(\'' + key + '\')">' + key + '</button>';
                         }else {
-                            document.getElementById('gameNav').innerHTML += '<button class="gameButton actions" onclick="onActionClick(\'' + action.Text + '\'); disableAction(\'' + key + '\')">' + key + '</button>';
+                            document.getElementById('gameNav').innerHTML += '<button class="gameButton actions" onclick="onActionClick(`' + action.Text + '`); disableAction(\'' + key + '\')">' + key + '</button>';
                         }
                     }else {
                         if(action.giveItem != undefined){
-                            document.getElementById('gameNav').innerHTML += '<button class="gameButton actions" onclick="onActionClick(\'' + action.Text + '\'); inventoryData.inventory.push(' + action.giveItem + ')">' + key + '</button>';
+                            document.getElementById('gameNav').innerHTML += '<button class="gameButton actions" onclick="onActionClick(`' + action.Text + '`); inventoryData.inventory.push(' + action.giveItem + ')">' + key + '</button>';
                         }else {
-                            document.getElementById('gameNav').innerHTML += '<button class="gameButton actions" onclick="onActionClick(\'' + action.Text + '\')">' + key + '</button>';
+                            document.getElementById('gameNav').innerHTML += '<button class="gameButton actions" onclick="onActionClick(`' + action.Text + '`)">' + key + '</button>';
                         }
                     }
                 }
@@ -144,9 +176,9 @@ function onRoomChange(room, animateImage = true) {
         // Update the image
         document.getElementById('gameImage').src = '../img/maps/' + mapData.maps[room - 1].image;
         if(animateImage){
-            if(document.getElementById('gameImage').classList.contains('roomImgOut'))
-            document.getElementById('gameImage').classList.remove('roomImgOut');
-        document.getElementById('gameImage').classList.add('roomImgIn');
+            if(document.getElementById('gameImage').classList.contains('roomTextOut'))
+            document.getElementById('gameImage').classList.remove('roomTextOut');
+        document.getElementById('gameImage').classList.add('roomTextIn');
         }
         toggleButton(false);
         // onload, check if the room has a key called onLoadTriggerEvent, then trigger the event idd
@@ -181,100 +213,109 @@ function onDirectionClick(room) {
 
 function onActionClick(text) {
     //fade in text with animate css
-    document.getElementById('gameChat').innerHTML = '<p class="actionsText roomTextIn">' + text + '</p>';
-    // after a delay, remove the text and put the room description back
-    // disable all button if there is an action
-    toggleButton(true);
-
-    // set the timeout for the number of letters. Exemple 85 letters is 8500 ms
-    var timeout = text.length * 80;
-    
+    fadeOutAll(true,true,false);
     setTimeout(function() {
+        fadeInAll(true,true,false);
+        document.getElementById('gameChat').innerHTML = '<p class="actionsText roomTextIn">' + text + '</p>';
+        // after a delay, remove the text and put the room description back
+        // disable all button if there is an action
+        toggleButton(true);
+
+        // set the timeout for the number of letters. Exemple 85 letters is 8500 ms
+        var timeout = 2000 + text.length * 40;
         
-        // remove the roomTextIn class and set the roomTextOut class
-        document.getElementById('gameChat').children[0].classList.remove('roomTextIn');
-        document.getElementById('gameChat').children[0].classList.add('roomTextOut');
-        document.getElementById('gameNav').classList.add('roomTextOut');
-        //set a timeout for the onRoomChange event for the animation to end
         setTimeout(function() {
-            //give the button the roomTextOut class
             
-            onRoomChange(player.currentRoom, false);
-        }, 200);
-    }, timeout);
+            // remove the roomTextIn class and set the roomTextOut class
+            //fadeOutAll(true, true, false);
+            //set a timeout for the onRoomChange event for the animation to end
+            
+            setTimeout(function() {
+                //give the button the roomTextOut class
+                
+                onRoomChange(player.currentRoom, false, false);
+                
+            }, 200);
+        }, timeout);
+    }, 500);
 }
 function onEventButtonClick(goto, event){
     //trigger the event from the passed event
 
 }
 function triggerEvent(eventID) {
-    // get the event from the eventID
-    document.getElementById('characterPortrait').style.display="none";
-    console.log(eventID);
+    // disable button function
+    console.log("TRIGGER EVENT");
     var event = eventsData.events.find(event => event.id === eventID);
-    console.log(event);
-    // if "eventDone": false, "eventDefDone": false
-    if(!event.eventDone && !event.eventDefDone){
-        // show the event text and buttons
+    if(!event.eventDone || !event.eventDefDone) fadeOutAll(true,true,false);
+    setTimeout(function() {
+        // get the event from the eventID
+        document.getElementById('characterPortrait').style.display="none";
+        console.log(eventID);
+        var event = eventsData.events.find(event => event.id === eventID);
+        console.log(event);
+        // if "eventDone": false, "eventDefDone": false
+        if(!event.eventDone && !event.eventDefDone){
+            // show the event text and buttons
+            var text = event.text
         
-    
-    //if isCharacterTalk is true, then show the character image and the text
-    if(event.isCharacterTalk){
-        console.log("Character");
-        // id="characterPortrait" is actually display none, so we need to remove it
-        //document.getElementById('characterPortrait').style.display="block";
-        //
-        characterID = event.characterID;
-        console.log(charactersData[characterID]);
-        document.getElementById('characterPortrait').src = '../img/characters/' + charactersData[characterID].image;
-        //Once the image is loaded, add the blur class to the gameImage
-        document.getElementById('characterPortrait').classList.add('roomTextIn');
-        document.getElementById('characterPortrait').onload = function(){
-            document.getElementById('gameImage').classList.add('blur');
-            //addClass roomtextin
+        //if isCharacterTalk is true, then show the character image and the text
+        if(event.isCharacterTalk){
+            console.log("Character");
+            // id="characterPortrait" is actually display none, so we need to remove it
+            //document.getElementById('characterPortrait').style.display="block";
+            //
+            characterID = event.characterID;
+            console.log(charactersData[characterID]);
+            document.getElementById('characterPortrait').src = '../img/characters/' + charactersData[characterID].image;
+            //Once the image is loaded, add the blur class to the gameImage
+            document.getElementById('characterPortrait').classList.add('roomTextIn');
+            document.getElementById('characterPortrait').onload = function(){
+                document.getElementById('gameImage').classList.add('blur');
+                //addClass roomtextin
+                
+                document.getElementById('characterPortrait').style.display="block";
+            }
+            //add a filter to the background
+            var characterName = charactersData[characterID].name;
+            text.Text = text.Text.replace('$CHAR', characterName);
+        }
+            // display text with id 1 with buttons in gameChat for the text and the buttons in gameNav
+            // event.texts is an array of objects with id including Text and Buttons array objects
             
-            document.getElementById('characterPortrait').style.display="block";
-        }
-        //add a filter to the background
+            // if text.Text contains $CHAR, replace it with the character name
+            
+            document.getElementById('gameChat').innerHTML = '<p class="characterText">' + text.Text + '</p>';
+            // Update the gameNav with the buttons
+            var buttons = text.Buttons;
+            //clear the buttons
+            document.getElementById('gameNav').innerHTML = "";
+            var buttonsHtml = '';
+            for (var i = 0; i < buttons.length; i++) {
+                console.log("GOTO "+buttons[i].Goto);
+                if(buttons[i].Goto == 99){
+                    console.log("BBBBBBBBBBBBBBB");
+                    //get event from Buttons.endEvent
+                    var endEvent = eventsData.events.find(event => event.id === buttons[i].endEvent);
+                    console.log(endEvent);
+                    // If edvEvent exists, set eventDone to true
+                    if(endEvent != undefined){
+                        endEvent.eventDone = true;
+                        endEvent.eventDefDone = true;
+                    }
+                    buttonsHtml += '<button class="gameButton" onclick="onRoomChange(' + player.currentRoom +', false, false);">' + buttons[i].Text + '</button>';
 
-    }
-        // display text with id 1 with buttons in gameChat for the text and the buttons in gameNav
-        // event.texts is an array of objects with id including Text and Buttons array objects
-        var text = event.text
-        console.log(text.Text);
-        // if text.Text contains $CHAR, replace it with the character name
-        var characterName = charactersData[characterID].name;
-        text.Text = text.Text.replace('$CHAR', characterName);
-        document.getElementById('gameChat').innerHTML = '<p class="characterText">' + text.Text + '</p>';
-        // Update the gameNav with the buttons
-        var buttons = text.Buttons;
-        //clear the buttons
-        document.getElementById('gameNav').innerHTML = "";
-        var buttonsHtml = '';
-        for (var i = 0; i < buttons.length; i++) {
-            console.log("GOTO "+buttons[i].Goto);
-            if(buttons[i].Goto == 99){
-                console.log("BBBBBBBBBBBBBBB");
-                //get event from Buttons.endEvent
-                var endEvent = eventsData.events.find(event => event.id === buttons[i].endEvent);
-                console.log(endEvent);
-                // If edvEvent exists, set eventDone to true
-                if(endEvent != undefined){
-                    endEvent.eventDone = true;
-                    endEvent.eventDefDone = true;
                 }
-                buttonsHtml += '<button class="gameButton" onclick="onRoomChange(' + player.currentRoom +', false);">' + buttons[i].Text + '</button>';
+                else {
+                    buttonsHtml += '<button class="gameButton" onclick="triggerEvent(' + buttons[i].Goto +')">' + buttons[i].Text + '</button>';
+            
+                }
+            }
+                document.getElementById('gameNav').innerHTML = buttonsHtml;
 
-            }
-            else {
-                buttonsHtml += '<button class="gameButton" onclick="triggerEvent(' + buttons[i].Goto +')">' + buttons[i].Text + '</button>';
-        
-            }
         }
-            document.getElementById('gameNav').innerHTML = buttonsHtml;
-
-    }
+        fadeInAll(true,true,false);
+    }, 500);
 }
 // init
 onRoomChange(player.currentRoom);
-
