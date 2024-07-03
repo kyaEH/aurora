@@ -116,3 +116,27 @@ button[disabled]{
     /*Blur and small black and white or brighness*/
     filter: blur(5px) grayscale(25%);
 }
+
+.gameMenu{
+    /*this menu is like a navbar on the left. It will includes 2 divs, one for a counter, and one for the items inventory*/
+    /*Dont align the items in the vertical center*/
+    /*autoscale the inventory width*/
+
+    padding:10px;
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom:auto;
+    width: 15vh;
+    /*Add a sweet background color with rounded border for an inventory*/
+    background-color: #44444488;
+    border-radius: 10px;
+    margin:10px;
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+}

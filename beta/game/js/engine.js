@@ -14,16 +14,34 @@ function toggleButton(Bool = true) {
         }
         buttons[i].disabled = Bool;
     }
+    
 }
+// function that push the item id to the player inventory
+
 // init player in bedroom
 var player = {
     "currentRoom": 1,
     "inventory": []
 };
-
+// function disable action triggered from a button, where it pass an actionDone attribute to true
+function disableAction(actionID){
+    var action = mapData.maps[player.currentRoom - 1].actions[actionID];
+    action.actionDone = true;
+}
 // Make a onroomchange event
 
 function onRoomChange(room, animateImage = true) {
+    // increment the counter (id counter) by 1
+    document.getElementById('counter').innerHTML = parseInt(document.getElementById('counter').innerHTML) + 1;
+    //check inventoryData.inventory array for each key, then put each item in the html element with id inventory
+    // check item id in inventoryData.inventory and find them from itemsData.items. Then put the item name in the inventory div
+    //give gameMenu a class roomFadeIn
+    var inventoryHtml = '<h3>Inventory</h3>';
+    for (var i = 0; i < inventoryData.inventory.length; i++) {
+        var item = itemsData.items.find(item => item.id === inventoryData.inventory[i]);
+        inventoryHtml += '<p>' + item.name + '</p>';
+    }
+    document.getElementById('inventory').innerHTML = inventoryHtml;
     // if there is a blur class in the gameImage, remove it
     if(document.getElementById('gameImage').classList.contains('blur')){
         document.getElementById('gameImage').classList.remove('blur');
@@ -89,12 +107,36 @@ function onRoomChange(room, animateImage = true) {
 
                     }
                 }
+                
+                // if the action has the giveItem attribute, add the item to the player inventory
+                // The give item attribute is the item id
+                // the inventory is an array of item id stored in a variable inventoryData as a json and with a key inventory as an array
+
                 if (action.triggerEvent) {
                     // add a button that will trigger the event
                     document.getElementById('gameNav').innerHTML += '<button class="gameButton actions" onclick="triggerEvent(' + action.eventID + ')">' + key + '</button>';
                 } else {
                     // add a button that will just display the text
-                    document.getElementById('gameNav').innerHTML += '<button class="gameButton actions" onclick="onActionClick(\'' + action.Text + '\')">' + key + '</button>';
+                    // if the actionID has an actionDone attribute, check if it's false and add the button. If it's true, skip
+                    console.log(action);
+                    console.log(action.actionDone);
+                    if(action.actionDone != undefined && action.actionDone){
+                        continue;
+                    }
+                    if(action.actionDone!=undefined){
+                        //if the action have giveItem attribute, wich is the item ID, create a button that will give the item to the player
+                        if(action.giveItem != undefined){
+                            document.getElementById('gameNav').innerHTML += '<button class="gameButton actions" onclick="onActionClick(\'' + action.Text + '\'); inventoryData.inventory.push(' + action.giveItem + '); disableAction(\'' + key + '\')">' + key + '</button>';
+                        }else {
+                            document.getElementById('gameNav').innerHTML += '<button class="gameButton actions" onclick="onActionClick(\'' + action.Text + '\'); disableAction(\'' + key + '\')">' + key + '</button>';
+                        }
+                    }else {
+                        if(action.giveItem != undefined){
+                            document.getElementById('gameNav').innerHTML += '<button class="gameButton actions" onclick="onActionClick(\'' + action.Text + '\'); inventoryData.inventory.push(' + action.giveItem + ')">' + key + '</button>';
+                        }else {
+                            document.getElementById('gameNav').innerHTML += '<button class="gameButton actions" onclick="onActionClick(\'' + action.Text + '\')">' + key + '</button>';
+                        }
+                    }
                 }
             }
         }

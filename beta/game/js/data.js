@@ -157,10 +157,11 @@ var mapData = {
                 "Check the bath": {
                     "Text": "You check the bath. You find a rubber duck.",
                     "triggerEvent": false,
-                    "eventID": 99
+                    "eventID": 99,
+                    "giveItem": 1,
+                    "actionDone": false
                 }
             },
-            "items" : [1]
         },
         // Room 5 is the living room. Just mark that it's TBD with a go back to corridor
         {
@@ -185,7 +186,16 @@ var mapData = {
 |       ITEMS         |
 =======================
 */
-
+itemsData = {
+    "items": [
+        {
+            "id": 1,
+            "name": "Rubber Duck",
+            "description": "A yellow rubber duck. It is very cute.",
+            "image": "duck.jpg"
+        }
+    ]
+}
 
 /*
 =======================
@@ -305,4 +315,14 @@ var charactersData = {
         "name": "Ohni",
         "image": "ohni.jpg"
     }
+}
+
+/*
+======================
+|      INVENTORY     |
+======================
+*/
+
+var inventoryData = {
+    "inventory": []
 }
