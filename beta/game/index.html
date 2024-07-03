@@ -1,0 +1,23 @@
+<!--Init js files and html basic file with main div full screen-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game</title>
+    <!--animate.css-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../css/game.css">
+</head>
+<body>
+    <div class="game" id="game">
+        <img id="gameImage" src="../img/black.jpg"/>
+    </div>
+    <div class="characterPortrait" ><img id="characterPortrait"  width="50%" height="50%" src="../img/black.jpg" style="display: none;"></div>
+    <div class="gameNav" id="gameNav"></div>
+    <div class="text" id="gameChat"><p class="roomTextIn">Game is loading...</p></div>
+    <!--jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/engine.js"></script>
+</body>
+</html>

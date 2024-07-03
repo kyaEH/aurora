@@ -1,0 +1,106 @@
+/*This is the main game CSS. There is the bottom where the things are described, or the characters talks*/
+.game{
+    display: flex;
+    margin-top: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+}
+
+.game img{
+    width: 100%;
+    max-width: 75%;
+    max-height: 75vh;
+
+}
+
+.text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+}
+
+.gameNav {
+    display: flex;
+    justify-content: center; /* Centers the buttons horizontally */
+    align-items: center; /* Aligns the buttons vertically */
+    gap: 1rem; /* Adds space between the buttons */
+    height: 10vh;
+    background-color: #000;
+}
+
+/* Your existing CSS for game buttons */
+.gameButton {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #000;
+    color: #fff;
+    border: 2px solid #fff;
+    cursor: pointer;
+    display: inline-block;
+}
+.actions {
+    border: 2px solid #fff;
+    color: #fff;
+    /*Italic text*/
+    font-style: italic;
+}
+button:disabled,
+button[disabled]{
+  border: 1px solid #bebebe;
+
+  color: #bebebe;
+}
+
+.actionsText{
+    /*Animation fadein then fadeout after a delay with animate.css*/
+    animation: fadeIn 1s, fadeOut 1s 7s;
+    font-style: italic;
+
+}
+
+.roomTextIn{
+    animation: fadeIn 1s;
+}
+
+.roomTextOut{
+    animation: fadeOut 1s;
+}
+
+/*image fade in and image fade out*/
+
+.roomImgIn{
+    animation: fadeIn 1s;
+}
+
+.roomImgOut{
+    animation: fadeOut 1s;
+}
+
+/*CharacterPortrait is on top in the middle of the game canvas, which is only the portrait of a character*/
+.characterPortrait{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    display: block;
+    position: absolute;
+
+    left: 40%;
+    top: 10%;
+}

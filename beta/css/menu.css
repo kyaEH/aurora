@@ -1,0 +1,27 @@
+/*Main video game menu landing page*/
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    background: url('../img/wallpaper.webp') no-repeat center center/cover
+}
+
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    margin: 1rem;
+}
+
+.menu a:hover {
+    color: rgb(123, 75, 255);
+    /*Text shadow*/
+    text-shadow: #000 1px 0 10px;
+}
