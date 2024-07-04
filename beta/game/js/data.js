@@ -22,7 +22,7 @@ var mapData = {
             },
             "actions": {
                 "Lay on your bed": {
-                    "Text": "You lay on your bed. It is very comfortable. You wish you could stay all day here.",
+                    "Text": "You lay on your bed. It is very comfortable. You wish you could stay here forever.",
                     "triggerEvent": false,
                     "eventID": 99
                 },
@@ -305,7 +305,7 @@ var eventsData = {
                         "id": 1,
                         "Text": "Next",
                         "Goto": "99",
-
+                        
                     }
                 ]
             },
@@ -356,7 +356,7 @@ var eventsData = {
                         "id": 1,
                         "Text": "Next",
                         "Goto": "99",
-
+                        "endEvent": 6
                     }
                 ]
             },

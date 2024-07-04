@@ -151,3 +151,26 @@ button[disabled]{
     font-family: 'Press Start 2P', cursive;
     text-align: center;
 }
+
+/*loadingbar should be placed on the bottom right of the screen*/
+.loadingbar{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 10px;
+    padding: 10px;
+    background-color: #44444488;
+    border-radius: 10px;
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    width: 400px;
+    height: 8px;
+}
+
+.loadingbar .bar {
+    width: 1%;
+  height: 10px;
+  background-color: #8b8b8b;
+  border-radius: 5px;
+}

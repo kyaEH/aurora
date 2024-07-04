@@ -2,8 +2,41 @@
 // The game engine will be able to handle events, items, and other things.
 // This is a textual based game, so no drawings or animations are needed.
 
+
 console.log('Engine is running');
 console.log(mapData);
+var i = 0;
+function move(time = 1000) {
+
+  if (i == 0) {
+    i = 1;
+    var elem = document.getElementById("bar");
+    var loadingbar = document.getElementById("loadingbar");
+    loadingbar.style.display = "block";
+    // remove class roomTextIn and add roomTextOut to loadingbar
+    loadingbar.classList.remove('roomTextOut');
+    loadingbar.classList.add('roomTextIn');
+    var width = 1;
+    var id = setInterval(frame, time/100);
+    function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+        i = 0;
+        // reset the bar to 1%
+        loadingbar.classList.remove('roomTextIn');
+        loadingbar.classList.add('roomTextOut');
+        setTimeout(function() {
+            loadingbar.style.display = "none";
+            elem.style.width = 1 + "%";
+        }, 500);
+        
+      } else {
+        width++;
+        elem.style.width = width + "%";
+      }
+    }
+  }
+}
 
 function toggleButton(Bool = true) {
     var buttons = document.getElementsByClassName('gameButton');
@@ -18,7 +51,6 @@ function toggleButton(Bool = true) {
 }
 function fadeOutAll(gameChat=true, gameNav=true, gameImage=true){
     // remove the roomTextIn class and add the roomTextOut class
-    console.log("FADE OUT");
     document.getElementById('gameChat').children[0].classList.remove('roomTextIn');
     document.getElementById('gameNav').classList.remove('roomTextIn');
     document.getElementById('gameImage').classList.remove('roomTextIn');
@@ -38,7 +70,6 @@ function fadeOutAll(gameChat=true, gameNav=true, gameImage=true){
 }
 function fadeInAll(gameChat=true, gameNav=true, gameImage=true){
     //remove the roomTextOut class and add the roomTextIn class
-    console.log("FADE IN");
     document.getElementById('gameChat').children[0].classList.remove('roomTextOut');
     document.getElementById('gameNav').classList.remove('roomTextOut');
     document.getElementById('gameImage').classList.remove('roomTextOut');
@@ -150,8 +181,6 @@ function onRoomChange(room, animateImage = true, animateAnything = true) {
                 } else {
                     // add a button that will just display the text
                     // if the actionID has an actionDone attribute, check if it's false and add the button. If it's true, skip
-                    console.log(action);
-                    console.log(action.actionDone);
                     if(action.actionDone != undefined && action.actionDone){
                         continue;
                     }
@@ -223,7 +252,9 @@ function onActionClick(text) {
 
         // set the timeout for the number of letters. Exemple 85 letters is 8500 ms
         var timeout = 2000 + text.length * 40;
-        
+        // use progressbar.js to show the progress of the text
+        move(timeout);
+
         setTimeout(function() {
             
             // remove the roomTextIn class and set the roomTextOut class
@@ -292,9 +323,17 @@ function triggerEvent(eventID) {
             document.getElementById('gameNav').innerHTML = "";
             var buttonsHtml = '';
             for (var i = 0; i < buttons.length; i++) {
-                console.log("GOTO "+buttons[i].Goto);
+                console.log("GOTO "+typeof(buttons[i].Goto));
+                // check if button goto ID event if the event got the eventDone attribute set to true
+                // buttons[i].Goto is the ID of the event that needs to be retrieved
+                eventCheck = eventsData.events.find(event => event.id === parseInt(buttons[i].Goto));
+                
+                if(eventCheck != undefined){
+                    if(eventCheck.eventDone){
+                        buttons[i].Goto = 99;
+                    }
+                }
                 if(buttons[i].Goto == 99){
-                    console.log("BBBBBBBBBBBBBBB");
                     //get event from Buttons.endEvent
                     var endEvent = eventsData.events.find(event => event.id === buttons[i].endEvent);
                     console.log(endEvent);
