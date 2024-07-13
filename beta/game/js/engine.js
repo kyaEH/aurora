@@ -102,6 +102,11 @@ function disableAction(actionID){
 function onRoomChange(room, animateImage = true, animateAnything = true) {
     // increment the counter (id counter) by 1
     document.getElementById('counter').innerHTML = parseInt(document.getElementById('counter').innerHTML) + 1;
+    // store in playerdata the counter and the current room
+    playerData = {
+        "counter": parseInt(document.getElementById('counter').innerHTML),
+        "currentRoom": room
+    };
     //check inventoryData.inventory array for each key, then put each item in the html element with id inventory
     // check item id in inventoryData.inventory and find them from itemsData.items. Then put the item name in the inventory div
     //give gameMenu a class roomFadeIn
@@ -115,7 +120,6 @@ function onRoomChange(room, animateImage = true, animateAnything = true) {
     if(document.getElementById('gameImage').classList.contains('blur') ){
         document.getElementById('gameImage').classList.remove('blur');  
     }
-    console.log('Room changed to ' + room);
     // Update the player object
     player.currentRoom = room;
     //Update the div with id gameChat with the room description mapData.maps[room - 1].description;
@@ -134,6 +138,22 @@ function onRoomChange(room, animateImage = true, animateAnything = true) {
     toggleButton(true);
 
     setTimeout(function() {
+        // if there is a triggerEvent from eventsData with a score, and if the score match, trigger the event
+        // the score required is scoreEvent, and the actual player score is playerData.counter
+        if(eventsData.events.find(event => event.scoreEvent === playerData.counter)){
+            //if the event have a moveTo attribute, then move the player to the room and trigger the event, then break
+            var eventTrigger = eventsData.events.find(event => event.scoreEvent === playerData.counter);
+            if(eventTrigger.eventDone == false){
+                if(eventTrigger.moveTo != undefined){
+                
+                    onRoomChange(eventTrigger.moveTo);
+                    return;
+                }
+                triggerEvent(eventTrigger.id);
+            }
+        }
+
+
         document.getElementById('gameChat').innerHTML = "<p class='roomTextIn'>" + mapData.maps[room - 1].description + "</p>";
         document.getElementById('gameNav').classList.add('roomTextIn');
         document.getElementById('gameNav').classList.remove('roomTextOut');
@@ -335,15 +355,21 @@ function triggerEvent(eventID) {
                 }
                 if(buttons[i].Goto == 99){
                     //get event from Buttons.endEvent
-                    var endEvent = eventsData.events.find(event => event.id === buttons[i].endEvent);
-                    console.log(endEvent);
-                    // If edvEvent exists, set eventDone to true
-                    if(endEvent != undefined){
-                        endEvent.eventDone = true;
-                        endEvent.eventDefDone = true;
+                    //endEvent is an array of ids
+                    if(buttons[i].endEvent != undefined){
+                        var endEvents = buttons[i].endEvent;
+                        console.log(endEvents);
+                        for(var j = 0; j < endEvents.length; j++){
+                            var endEvent = eventsData.events.find(event => event.id === endEvents[j]);
+                            if(endEvent != undefined){
+                                endEvent.eventDone = true;
+                                endEvent.eventDefDone = true;
+                            }
+                        }
+                        var endEvent = eventsData.events.find(event => event.id === buttons[i].endEvent);
                     }
                     buttonsHtml += '<button class="gameButton" onclick="onRoomChange(' + player.currentRoom +', false, false);">' + buttons[i].Text + '</button>';
-
+                    
                 }
                 else {
                     buttonsHtml += '<button class="gameButton" onclick="triggerEvent(' + buttons[i].Goto +')">' + buttons[i].Text + '</button>';

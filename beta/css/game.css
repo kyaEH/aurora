@@ -33,6 +33,12 @@ body {
     font-family: 'Press Start 2P', cursive;
     text-align: center;
 }
+/*If the screen is mobile, then put the text smaller*/
+@media only screen and (max-height: 600px) {
+    .text{
+        font-size: medium;
+    }
+}
 
 .gameNav {
     display: flex;
@@ -41,7 +47,12 @@ body {
     gap: 1rem; /* Adds space between the buttons */
     background-color: #000;
 }
-
+/*If the screen maxheight 600 px then smaller div*/
+@media only screen and (max-height: 600px) {
+    .gameNav{
+        height: 10vh;
+    }
+}
 /* Your existing CSS for game buttons */
 .gameButton {
     margin-top: 1rem;
@@ -164,7 +175,7 @@ button[disabled]{
     color: #fff;
     font-family: 'Press Start 2P', cursive;
     text-align: center;
-    width: 400px;
+    width: 200px;
     height: 8px;
 }
 
@@ -173,4 +184,16 @@ button[disabled]{
   height: 10px;
   background-color: #8b8b8b;
   border-radius: 5px;
+}
+
+/*if screen height 600 then .inventory h3 smaller*/
+@media only screen and (max-height: 600px) {
+    .inventory h3{
+        font-size: medium;
+    }
+}
+
+/*Hide scrollbar*/
+body::-webkit-scrollbar {
+    display: none;
 }
