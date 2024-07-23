@@ -194,7 +194,13 @@ itemsData = {
             "id": 1,
             "name": "Rubber Duck",
             "description": "A yellow rubber duck. It is very cute.",
-            "image": "duck.jpg"
+            "image": "tbd.webp"
+        },
+        {
+            "id": 2,
+            "name": "Diary",
+            "description": "A diary with a lot of memories.",
+            "image": "tbd.webp"
         }
     ]
 }
@@ -243,7 +249,6 @@ var eventsData = {
                 ]
             },
         
-        "doneText": "Test done",
         "eventDone": false,
         "eventDefDone": false
     },
@@ -265,7 +270,6 @@ var eventsData = {
                 ]
             },
         
-        "doneText": "Test done",
         "eventDone": false,
         "eventDefDone": false
     },
@@ -287,7 +291,6 @@ var eventsData = {
                 ]
             },
         
-        "doneText": "Test done",
         "eventDone": false,
         "eventDefDone": false
     },
@@ -310,7 +313,6 @@ var eventsData = {
                 ]
             },
         
-        "doneText": "Test done",
         "eventDone": false,
         "eventDefDone": false
     },
@@ -338,7 +340,6 @@ var eventsData = {
                 ]
             },
         
-        "doneText": "Test done",
         "eventDone": false,
         "eventDefDone": false
     },
@@ -346,11 +347,39 @@ var eventsData = {
     {
         "id": 6,
         "isCharacterTalk": false,
-        
         "text": 
             {
                 
                 "Text": "You read the diary. It is full of memories, and you feel happy.",
+                "Buttons": [
+                    {
+                        "id": 1,
+                        "Text": "Close the diary",
+                        "Goto": "99",
+                        "endEvent": 6
+                    },
+                    {
+                        "id": 2,
+                        "Text": "Take the diary",
+                        "Goto": "7",
+                        "giveItem": 2,
+                        "endEvent": 6
+                        
+                    }
+                ]
+            },
+        
+        "eventDone": false,
+        "eventDefDone": false
+    },
+    {
+        //id 7 is close the diary event
+        "id": 7,
+        "isCharacterTalk": false,
+        "text": 
+            {
+                
+                "Text": "You close the diary. You feel happy.",
                 "Buttons": [
                     {
                         "id": 1,
@@ -361,11 +390,10 @@ var eventsData = {
                 ]
             },
         
-        "doneText": "Test done",
         "eventDone": false,
         "eventDefDone": false
     },
-
+    
     ]
 }
 

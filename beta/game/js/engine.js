@@ -98,28 +98,54 @@ function disableAction(actionID){
     action.actionDone = true;
 }
 // Make a onroomchange event
+function popupItem(itemID){
+    var item = itemsData.items.find(item => item.id === itemID);
+    toggleButton(true);
+    /*
+    <div class="popup" id="popup" style="display:none">
+        <div class="popupContent" id="popupContent">
+            <h2 id="popupTitle">Title</h2>
+            <p id="popupText">Text</p>
+            <button id="popupButton">Close</button>
+        </div>
+    </div>*/
+    var popup = document.getElementById('popup');
+    var popupImage = document.getElementById('popupImage');
+    var popupTitle = document.getElementById('popupTitle');
+    var popupText = document.getElementById('popupText');
+    var popupButton = document.getElementById('popupButton');
+    popup.style.display = "block";
+    popupTitle.innerHTML = item.name;
+    popupText.innerHTML = item.description;
+    popupImage.src = '../img/items/' + item.image;
+    popupButton.innerHTML = "Close";
+    popupButton.onclick = function(){
+        popup.style.display = "none";
+        toggleButton(false);
+    }
 
+
+}
 function onRoomChange(room, animateImage = true, animateAnything = true) {
     // increment the counter (id counter) by 1
     document.getElementById('counter').innerHTML = parseInt(document.getElementById('counter').innerHTML) + 1;
-    // store in playerdata the counter and the current room
-    playerData = {
-        "counter": parseInt(document.getElementById('counter').innerHTML),
-        "currentRoom": room
-    };
     //check inventoryData.inventory array for each key, then put each item in the html element with id inventory
     // check item id in inventoryData.inventory and find them from itemsData.items. Then put the item name in the inventory div
     //give gameMenu a class roomFadeIn
     var inventoryHtml = '<h3>Inventory</h3>';
     for (var i = 0; i < inventoryData.inventory.length; i++) {
         var item = itemsData.items.find(item => item.id === inventoryData.inventory[i]);
-        inventoryHtml += '<p>' + item.name + '</p>';
+        //inventoryHtml += '<p>' + item.name + '</p>';
+        //inventoryHtml has to be a button that will open a popup with the item description
+        inventoryHtml += '<button class="inventoryButton" onclick="popupItem(' + item.id + ')">' + item.name
+
     }
     document.getElementById('inventory').innerHTML = inventoryHtml;
     // if there is a blur class in the gameImage, remove it
     if(document.getElementById('gameImage').classList.contains('blur') ){
         document.getElementById('gameImage').classList.remove('blur');  
     }
+    console.log('Room changed to ' + room);
     // Update the player object
     player.currentRoom = room;
     //Update the div with id gameChat with the room description mapData.maps[room - 1].description;
@@ -138,22 +164,6 @@ function onRoomChange(room, animateImage = true, animateAnything = true) {
     toggleButton(true);
 
     setTimeout(function() {
-        // if there is a triggerEvent from eventsData with a score, and if the score match, trigger the event
-        // the score required is scoreEvent, and the actual player score is playerData.counter
-        if(eventsData.events.find(event => event.scoreEvent === playerData.counter)){
-            //if the event have a moveTo attribute, then move the player to the room and trigger the event, then break
-            var eventTrigger = eventsData.events.find(event => event.scoreEvent === playerData.counter);
-            if(eventTrigger.eventDone == false){
-                if(eventTrigger.moveTo != undefined){
-                
-                    onRoomChange(eventTrigger.moveTo);
-                    return;
-                }
-                triggerEvent(eventTrigger.id);
-            }
-        }
-
-
         document.getElementById('gameChat').innerHTML = "<p class='roomTextIn'>" + mapData.maps[room - 1].description + "</p>";
         document.getElementById('gameNav').classList.add('roomTextIn');
         document.getElementById('gameNav').classList.remove('roomTextOut');
@@ -347,32 +357,37 @@ function triggerEvent(eventID) {
                 // check if button goto ID event if the event got the eventDone attribute set to true
                 // buttons[i].Goto is the ID of the event that needs to be retrieved
                 eventCheck = eventsData.events.find(event => event.id === parseInt(buttons[i].Goto));
-                
+                console.log("EVENT CHECK")
+                console.log(eventCheck);
                 if(eventCheck != undefined){
                     if(eventCheck.eventDone){
-                        buttons[i].Goto = 99;
+                        continue;
                     }
                 }
+                //if button got the giveItem attribute, add the item to the player inventory
+
                 if(buttons[i].Goto == 99){
+
                     //get event from Buttons.endEvent
-                    //endEvent is an array of ids
-                    if(buttons[i].endEvent != undefined){
-                        var endEvents = buttons[i].endEvent;
-                        console.log(endEvents);
-                        for(var j = 0; j < endEvents.length; j++){
-                            var endEvent = eventsData.events.find(event => event.id === endEvents[j]);
-                            if(endEvent != undefined){
-                                endEvent.eventDone = true;
-                                endEvent.eventDefDone = true;
-                            }
-                        }
-                        var endEvent = eventsData.events.find(event => event.id === buttons[i].endEvent);
+                    var endEvent = eventsData.events.find(event => event.id === buttons[i].endEvent);
+                    console.log(endEvent);
+                    // If edvEvent exists, set eventDone to true
+                    if(endEvent != undefined){
+                        endEvent.eventDone = true;
+                        endEvent.eventDefDone = true;
                     }
-                    buttonsHtml += '<button class="gameButton" onclick="onRoomChange(' + player.currentRoom +', false, false);">' + buttons[i].Text + '</button>';
+                    if(buttons[i].giveItem != undefined){
+                        buttonsHtml += '<button class="gameButton" onclick="triggerEvent(' + buttons[i].Goto + ', ' + eventID + '); inventoryData.inventory.push(' + buttons[i].giveItem + ');">' + buttons[i].Text + '</button>';
+                    }
                     
+                    else buttonsHtml += '<button class="gameButton" onclick="onRoomChange(' + player.currentRoom +', false, false);">' + buttons[i].Text + '</button>';
+
                 }
                 else {
-                    buttonsHtml += '<button class="gameButton" onclick="triggerEvent(' + buttons[i].Goto +')">' + buttons[i].Text + '</button>';
+                    if(buttons[i].giveItem != undefined){
+                        buttonsHtml += '<button class="gameButton" onclick="triggerEvent(' + buttons[i].Goto + ', ' + eventID + '); inventoryData.inventory.push(' + buttons[i].giveItem + ');">' + buttons[i].Text + '</button>';
+                    }
+                    else buttonsHtml += '<button class="gameButton" onclick="triggerEvent(' + buttons[i].Goto +')">' + buttons[i].Text + '</button>';
             
                 }
             }

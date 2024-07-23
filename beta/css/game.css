@@ -33,12 +33,6 @@ body {
     font-family: 'Press Start 2P', cursive;
     text-align: center;
 }
-/*If the screen is mobile, then put the text smaller*/
-@media only screen and (max-height: 600px) {
-    .text{
-        font-size: medium;
-    }
-}
 
 .gameNav {
     display: flex;
@@ -47,12 +41,7 @@ body {
     gap: 1rem; /* Adds space between the buttons */
     background-color: #000;
 }
-/*If the screen maxheight 600 px then smaller div*/
-@media only screen and (max-height: 600px) {
-    .gameNav{
-        height: 10vh;
-    }
-}
+
 /* Your existing CSS for game buttons */
 .gameButton {
     margin-top: 1rem;
@@ -64,6 +53,28 @@ body {
     cursor: pointer;
     display: inline-block;
     border-radius: 5px;
+}
+
+.inventoryButton {
+    /*Inventory button is smaller and correspond to a single item of the player*/
+    /* No border, no background color, no padding */
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 5px;
+    color:white;
+    margin-bottom: 10px;
+    font-size: large;
+    text-decoration: underline;
+    padding: 5px;
+    width: 90%;
+}
+.inventoryButton:hover {
+    /*Hover effect, change the color to a light blue*/
+    color: rgb(220, 254, 255);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 .actions {
     border: 2px solid #fff;
@@ -175,7 +186,7 @@ button[disabled]{
     color: #fff;
     font-family: 'Press Start 2P', cursive;
     text-align: center;
-    width: 200px;
+    width: 400px;
     height: 8px;
 }
 
@@ -186,14 +197,55 @@ button[disabled]{
   border-radius: 5px;
 }
 
-/*if screen height 600 then .inventory h3 smaller*/
-@media only screen and (max-height: 600px) {
-    .inventory h3{
-        font-size: medium;
-    }
+.popup{
+        /*popup is a div that will be on the center of the screen*/
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 50%;
+    height: 50%;
+    padding: 10px;
+    background-color: #44444488;
+    border-radius: 10px;
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    display: none;
 }
 
-/*Hide scrollbar*/
-body::-webkit-scrollbar {
-    display: none;
+.popup img{
+    width: 100%;
+    max-width: 75%;
+    max-height: 75vh;
+}
+
+.popup p{
+    text-align: center;
+    font-size: large;
+}
+
+.popup .close{
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+/*animation keyframes*/
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes fadeOut {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
 }
