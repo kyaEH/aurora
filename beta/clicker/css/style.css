@@ -1,0 +1,61 @@
+.nav{
+    /*This is a cookie clicker, put it in a brown color like, why not gradiant*/
+    background-color: #8B4513;
+        background: linear-gradient(to bottom, #8B4513, #A0522D);
+    padding: 10px 0px;
+    border-bottom: 1px solid #000;
+    box-shadow: 0px 2px 5px #000;
+        margin-bottom: 10px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    color: white;
+}
+.main h1{
+    /*Title of the cookie clicker*/
+    text-align: center;
+    font-size: 3em;
+    margin-top: 100px;
+    margin-bottom: 0;
+    padding: 10px 0px;
+    background-color: #8B4513;
+    color: white;
+    box-shadow: 0px 2px 5px #000;
+    border-bottom: 1px solid #000;
+    margin-bottom: 10px;
+}
+.main{
+    /*Main container of the cookie clicker*/
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.main .clicker{
+    /*Main canvas, with a background image ./img/cookie.jpg*/
+    /*position it under the top nav*/
+    background-image: url(../img/cookie.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 50vh;
+    width: 50vh;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto auto;
+    text-align: center;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px #000;
+
+    
+
+}
+
